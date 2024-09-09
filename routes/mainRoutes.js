@@ -22,31 +22,43 @@ router.post("/logar", async (req, res) => {
                 nome: usuarioEncontrado.nome
             }
         }
-res.redirect("/receita");
+        res.redirect("/receita");
 
     } catch (error) {
-
+        res.send("erro no servidor : " + error)
     }
-
-
 })
 
 
+router.post("/cadastrar", async (req, res)=>{
+    try {
+        const {nomec, emailc, senhac} = req.body;
+        await User.create({
+            email : emailc,
+            senha : senhac,
+            nome : nomec
+        });
+        res.redirect("login")
+    } catch (error) {
+        console.log(error)
+        res.send("erro ", error)
+    }
 
+})
 
 router.get("/", userMiddleware, (req, res) => {
     res.render("homePageDespesas")
 })
 
-router.get("/adicionarDespesa",userMiddleware,  (req, res) => {
+router.get("/adicionarDespesa", userMiddleware, (req, res) => {
     res.render("adicionarDespesa");
 })
 
-router.get("/adicionarReceita",userMiddleware, (req, res) => {
+router.get("/adicionarReceita", userMiddleware, (req, res) => {
     res.render("adicionarReceita");
 })
 
-router.get("/receita",userMiddleware, (req, res) => {
+router.get("/receita", userMiddleware, (req, res) => {
     res.render("homePageReceita");
 })
 

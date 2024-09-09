@@ -266,7 +266,6 @@ input[type="radio"]:checked+label {
     margin: 0 auto;
     background-color: var(--containers);
 
-    margin-top: 2em;
 }
 
 .formLogin div {
@@ -302,10 +301,16 @@ input[type="radio"]:checked+label {
 .navbarLogin {
     color: white;
     display: flex;
-    justify-content: space-around;
-    margin-top: 1em;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 4em;
 }
-
+.navbarLogin p{
+    padding: .8em 2em;
+    border-radius: 1em 1em 0 0;
+}
 .selected {
-    border-bottom: 1px solid red;
+    background-color: var(--containers);
+   
 }
