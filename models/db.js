@@ -1,8 +1,8 @@
 const { Sequelize } = require("sequelize");
 
 //conectando com o banco de dados
-const sequelize = new Sequelize("gweb", "root", "", {
-    host: "localhost",
+const sequelize = new Sequelize("sql10730434", "sql10730434", "VUcNWeRdxe", {
+    host: "sql10.freesqldatabase.com",
     dialect: "mysql",
     port : 3306
 });

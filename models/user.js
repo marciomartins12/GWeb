@@ -6,10 +6,7 @@ const user = sequelize.define("user", {
         primaryKey: true,
         autoIncrement: true
     },
-    nome: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
+
     email: {
         type: Sequelize.STRING,
         allowNull: true
@@ -17,18 +14,9 @@ const user = sequelize.define("user", {
     senha: {
         type: Sequelize.STRING,
         allowNull: true
-    },endereco: {
+    }, nome: {
         type: Sequelize.STRING,
-        allowNull: true
-    },logradouro: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },cep: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },bairro: {
-        type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     }
 }, {
     tableName: 'user',
