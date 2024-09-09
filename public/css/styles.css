@@ -132,8 +132,76 @@ body {
     color: #7dff00;
 }
 
+.divQuantia {
+    width: 95%;
+    margin: 1em auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divQuantia label {
+    font-size: 1.4em;
+}
+
+.divQuantia input {
+    background-color: var(--text);
+    border: none;
+    width: 100px;
+    border-radius: 1em;
+    padding-left: 1em;
+    color: white;
+    font-size: 1.4em;
+}
+
+.divQuantia input::placeholder {
+    color: rgb(156, 150, 150);
+}
+
+.categoria {
+    display: inline-block;
+    margin: 10px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+
+    background-color: var(--containers);
+}
+
 .active {
     background-color: #021d25;
+}
+
+.label {
+    border-radius: 1em;
+    padding: .5em;
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+    color: rgb(141, 138, 138);
+    align-items: center;
+}
+
+.categoriasDiv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1em;
+    justify-content: space-around;
+}
+
+.label i {
+    background-color: var(--containers);
+    padding: .33em;
+    border-radius: 50%;
+}
+
+.icons {
+    font-size: 2em;
 }
 
 .listar {
@@ -144,8 +212,49 @@ body {
     text-decoration: none;
     border-radius: 1em;
 }
-.centerBtn{
+
+.centerBtn {
     display: flex;
     justify-content: center;
     margin-top: 1em;
+}
+
+.categoria {
+    color: white;
+}
+
+.descricaoInput {
+    margin-top: .5em;
+    background-color: var(--containers);
+    width: 100%;
+    border: none;
+    padding: .44em;
+    border-radius: 1em;
+    font-size: 1.4em;
+}
+
+.descricaoDiv {
+    margin-top: 1em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.btnAdicionarDespesa {
+    margin-top: 1em;
+}
+
+.centerBtn button {
+    border: none;
+    color: black;
+    border-radius: 1em;
+    background-color: #ffe000;
+    font-weight: 700;
+    padding: 1em;
+}
+
+.form {
+    width: 95%;
+    margin: 0 auto;
 }
