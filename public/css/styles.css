@@ -254,8 +254,9 @@ input[type="radio"]:checked+label {
     font-weight: 700;
     padding: 1em;
 }
-.formLogin{
-   border-radius: 1em;
+
+.formLogin {
+    border-radius: 1em;
     justify-content: center;
     flex-direction: column;
     display: flex;
@@ -267,11 +268,13 @@ input[type="radio"]:checked+label {
 
     margin-top: 2em;
 }
+
 .formLogin div {
     display: flex;
     flex-direction: column;
 }
-.formLogin div input{
+
+.formLogin div input {
     border-radius: 1em;
     color: white;
     background-color: var(--primaria);
@@ -282,7 +285,27 @@ input[type="radio"]:checked+label {
     margin-bottom: .5em;
     margin-left: 2.5%;
 }
+
 .form {
     width: 95%;
     margin: 0 auto;
+}
+
+.formLogin {
+    display: none;
+}
+
+.formVisible {
+    display: block;
+}
+
+.navbarLogin {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
+}
+
+.selected {
+    border-bottom: 1px solid red;
 }
