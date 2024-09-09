@@ -1,0 +1,151 @@
+@font-face {
+    font-family: jeju;
+    src: url("/css/jeju.ttf");
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(122, 122, 122);
+}
+
+:root {
+    --primaria: #000000;
+    --containers: #1C2528;
+    --text: #707070;
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--primaria);
+    font-family: jeju;
+
+}
+
+.navUser {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1em;
+    padding: 1em;
+}
+
+.navUser p {
+
+    color: var(--text);
+}
+
+.cabecalho {
+    background-color: var(--containers);
+    border-radius: 0 0 3em 3em;
+}
+
+.btnSair {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.menuNavegacao {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.5em;
+}
+
+.nav {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    margin-bottom: 2em;
+    padding: 1em 2em;
+    border-radius: 1em;
+    background-color: #302E2E;
+}
+
+.nav p {
+    font-size: .8em;
+    color: white;
+}
+
+.nav .spanReceita {
+    font-size: .6em;
+    color: #7dff00;
+}
+
+.nav .spanDespesa {
+    color: #ff0000;
+    font-size: .6em;
+}
+
+.bxiconsCabecalho {
+    font-size: 1.7em;
+}
+
+
+
+.chart {
+    background-color: var(--containers);
+    width: 95%;
+    margin: 1em auto;
+    border-radius: 2em;
+
+}
+
+.chart .chartDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.btnAdd {
+    display: flex;
+    justify-content: end;
+}
+
+.btnAdd a {
+    text-decoration: none;
+    font-size: 3em;
+    margin-right: .3em;
+}
+
+.chart .canvas {
+    width: 290px;
+    height: 290px;
+}
+
+.ul li a {
+    text-decoration: none;
+    width: 95%;
+    padding: 1em;
+    border-radius: 1em;
+    color: white;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menos {
+    color: #ff0000;
+}
+
+.mais {
+    color: #7dff00;
+}
+
+.active {
+    background-color: #021d25;
+}
+
+.listar {
+    padding: 1em;
+    background-color: #ffe000;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 1em;
+}
+.centerBtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}

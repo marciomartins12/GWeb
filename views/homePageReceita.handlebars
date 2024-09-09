@@ -1,0 +1,95 @@
+<section class="container">
+    <div class="cabecalho">
+
+        <nav class="navUser">
+            <p>Marcio Jose</p>
+            <a class="btnSair" href="#">sair</a>
+        </nav>
+        <nav class="menuNavegacao">
+            <a href="receita" class="nav active">
+                <i class='bxiconsCabecalho bx bxs-dollar-circle' style='color:#7dff00'></i>
+                <div>
+                    <p>Receita</p>
+                    <span class="spanReceita">R$ 574.85</span>
+                </div>
+            </a>
+            <a href="/" class="nav ">
+                <i class='bxiconsCabecalho bx bxs-down-arrow-circle' style='color:#ff0000'></i>
+                <div>
+                    <p>Despesas</p>
+                    <span class="spanDespesa">R$-200.00</span>
+                </div>
+            </a>
+
+        </nav>
+    </div>
+
+    <main>
+        <div class="chart active">
+            <div class="chartDiv">
+                <div class="canvas">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <div class="btnAdd">
+                <a href="#"><i class='bx bxs-plus-circle' style='color:#ffe000'></i></a>
+            </div>
+        </div>
+        <ul class="ul ">
+            <li>
+                <a class="active" href="#">
+                    <p>Mamae</p> <span class="mais">R$22.50</span>
+                </a>
+            </li>
+        </ul>
+        <div class="centerBtn">
+
+            <a href="listaReceita" class="listar">Exibir todos</a>
+        </div>
+    </main>
+
+
+
+
+
+
+</section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Salário', 'Presente', 'Outros'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
