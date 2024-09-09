@@ -2,6 +2,8 @@ const express = require("express");
 const Sequelize = require('sequelize');
 const router = express.Router();
 const User = require("../models/user");
+const Receita = require("../models/receita");
+
 const userMiddleware = require("../middleware/userMidlleware");
 
 
@@ -46,8 +48,9 @@ router.post("/cadastrar", async (req, res)=>{
 
 })
 
-router.get("/", userMiddleware, (req, res) => {
-    res.render("homePageDespesas")
+router.get("/", userMiddleware, async(req, res) => {
+   
+    res.render("homePageDespesas", )
 })
 
 router.get("/adicionarDespesa", userMiddleware, (req, res) => {
@@ -58,8 +61,12 @@ router.get("/adicionarReceita", userMiddleware, (req, res) => {
     res.render("adicionarReceita");
 })
 
-router.get("/receita", userMiddleware, (req, res) => {
-    res.render("homePageReceita");
+router.get("/receita", userMiddleware, async(req, res) => {
+    const receitasEncontradas = await Receita.findAll({
+        where : { iduser : req.session.user.iduser},
+        limit : 4
+    })
+    res.render("homePageReceita", {listaReceitas : receitasEncontradas});
 })
 
 
