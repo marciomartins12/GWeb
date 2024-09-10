@@ -123,7 +123,9 @@ body {
     display: flex;
     justify-content: space-between;
 }
-
+.ul li{
+    margin-bottom: .5em;
+}
 .menos {
     color: #ff0000;
 }

@@ -13,7 +13,7 @@
                     <span class="spanReceita">R$ 574.85</span>
                 </div>
             </a>
-            <a href="/"  class="nav active">
+            <a href="/" class="nav active">
                 <i class='bxiconsCabecalho bx bxs-down-arrow-circle' style='color:#ff0000'></i>
                 <div>
                     <p>Despesas</p>
@@ -36,12 +36,18 @@
             </div>
         </div>
         <ul class="ul ">
-            <li >
-                <a class="active" href="#">
-                    <p>presente mamae</p> <span class="menos">R$22.50</span>
+            {{#each listaDespesas}}
+            <li>
+                <a class="active" href="/verDespesa/{{iddespesa}}">
+                    <p>categoria: {{categoria}}</p> <span class="menos">R${{quantia}}</span>
                 </a>
             </li>
+            {{/each}}
+
         </ul>
+         <div class="centerBtn">
+            <a href="listaDespesas" class="listar">Exibir todos</a>
+        </div>
     </main>
 
 
