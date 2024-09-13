@@ -16,23 +16,94 @@ router.get("/", userMiddleware, async (req, res) => {
         where: { iduser: req.session.user.iduser },
         limit: 4
     })
-    res.render("homePageDespesas", { listaDespesas: despesasEncontradas });
+
+    const aReceita = await Receita.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+    const aDespesa = await Despesa.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+
+    let sDespesa = aDespesa.reduce((total, despesa) => {
+        return total + despesa.quantia;
+    }, 0)
+
+
+    let sReceita = aReceita.reduce((total, receita) => {
+        return total + receita.quantia;
+    }, 0)
+
+  
+
+
+
+    res.render("homePageDespesas", { listaDespesas: despesasEncontradas, totalDespesa : sDespesa, totalReceita : sReceita, total : sReceita - sDespesa });
 
 })
 
-router.get("/adicionarDespesa", userMiddleware, (req, res) => {
-    res.render("adicionarDespesa");
+router.get("/adicionarDespesa", userMiddleware, async(req, res) => {
+    
+    const aReceita = await Receita.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+    const aDespesa = await Despesa.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+
+    let sDespesa = aDespesa.reduce((total, despesa) => {
+        return total + despesa.quantia;
+    }, 0)
+
+
+    let sReceita = aReceita.reduce((total, receita) => {
+        return total + receita.quantia;
+    }, 0)
+
+    res.render("adicionarDespesa", { totalDespesa : sDespesa, totalReceita : sReceita, total : sReceita - sDespesa});
 })
 
-router.get("/adicionarReceita", userMiddleware, (req, res) => {
-    res.render("adicionarReceita");
+router.get("/adicionarReceita", userMiddleware, async(req, res) => {
+    const aReceita = await Receita.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+    const aDespesa = await Despesa.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+
+    let sDespesa = aDespesa.reduce((total, despesa) => {
+        return total + despesa.quantia;
+    }, 0)
+
+
+    let sReceita = aReceita.reduce((total, receita) => {
+        return total + receita.quantia;
+    }, 0)
+
+
+    res.render("adicionarReceita",{totalDespesa : sDespesa, totalReceita : sReceita, total : sReceita - sDespesa });
 })
 router.get("/receita", userMiddleware, async (req, res) => {
     const receitasEncontradas = await Receita.findAll({
         where: { iduser: req.session.user.iduser },
         limit: 4
     })
-    res.render("homePageReceita", { listaReceitas: receitasEncontradas });
+    const aReceita = await Receita.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+    const aDespesa = await Despesa.findAll({
+        where: { iduser: req.session.user.iduser }
+    })
+
+    let sDespesa = aDespesa.reduce((total, despesa) => {
+        return total + despesa.quantia;
+    }, 0)
+
+
+    let sReceita = aReceita.reduce((total, receita) => {
+        return total + receita.quantia;
+    }, 0)
+
+    res.render("homePageReceita", { listaReceitas: receitasEncontradas, totalDespesa : sDespesa, totalReceita : sReceita, total : sReceita - sDespesa });
 })
 
 
@@ -102,7 +173,7 @@ router.post("/cadastrar", async (req, res) => {
             senha: senhac,
             nome: nomec
         });
-        res.redirect("login")
+        res.redirect("/login")
     } catch (error) {
         console.log(error)
         res.send("erro ", error)

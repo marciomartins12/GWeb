@@ -5,19 +5,25 @@
             <p>Marcio Jose</p>
             <a class="btnSair" href="#">sair</a>
         </nav>
+        <div class="valueTotal">
+            <div>
+                <p>Total</p>
+            R${{ total}}
+            </div>
+        </div>
         <nav class="menuNavegacao">
             <a href="receita" class="nav ">
                 <i class='bxiconsCabecalho bx bxs-dollar-circle' style='color:#7dff00'></i>
                 <div>
                     <p>Receita</p>
-                    <span class="spanReceita">R$ 574.85</span>
+                    <span class="spanReceita">R$ {{totalReceita}}</span>
                 </div>
             </a>
             <a href="/" class="nav active">
                 <i class='bxiconsCabecalho bx bxs-down-arrow-circle' style='color:#ff0000'></i>
                 <div>
                     <p>Despesas</p>
-                    <span class="spanDespesa">R$-200.00</span>
+                    <span class="spanDespesa">R$ {{totalDespesa}}</span>
                 </div>
             </a>
 
@@ -45,7 +51,7 @@
             {{/each}}
 
         </ul>
-         <div class="centerBtn">
+        <div class="centerBtn">
             <a href="listaDespesas" class="listar">Exibir todos</a>
         </div>
     </main>

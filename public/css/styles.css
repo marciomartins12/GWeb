@@ -316,3 +316,24 @@ input[type="radio"]:checked+label {
     background-color: var(--containers);
    
 }
+.valueTotal{
+    display: flex;
+    justify-content: center;
+   
+}
+.valueTotal div{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    background-color: #292929;
+    border-radius: 1em;
+    
+}
+.valueTotal div p {
+ 
+    color: #0a1124;
+    font-size: 1.4em;
+    
+}
