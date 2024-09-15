@@ -1,0 +1,14 @@
+{
+  "name": "accountsnodejs",
+  "version": "1.0.0",
+  "description": "Aplicativo de criacao de contas pelo terminal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^10.2.2"
+  }
+}
