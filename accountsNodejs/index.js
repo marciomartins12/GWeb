@@ -36,6 +36,13 @@ function criarConta() {
     }).then((res) => {
         let resposta = res["resposta"];
 
-        console.log(resposta)
-    })
+        if (!fs.existsSync("accounts")) {
+            fs.mkdirSync("accounts")
+        }
+        if(!fs.existsSync(`accounts/${resposta}.json`)){
+            console.log("esssa conta nao existe")
+        }else{
+            console.log("essa conta existe")
+        }
+    }).catch(err => console.log(err))
 }
