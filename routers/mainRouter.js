@@ -1,0 +1,12 @@
+const express = require("express");
+const Router = express.Router();
+
+
+Router.get("/", (req,res)=>{
+    res.send("entrando")
+})
+
+
+
+
+module.exports = Router
