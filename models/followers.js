@@ -16,7 +16,7 @@ const follower = sequelize.define("follower", {
         allowNull: false
     },
     data_follower: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
         allowNull: false
     },
 }, {

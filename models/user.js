@@ -28,7 +28,7 @@ const user = sequelize.define("user", {
         allowNull: true
     },
     data_criacao: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
         allowNull: false
     },
 }, {
