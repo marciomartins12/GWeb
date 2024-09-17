@@ -23,3 +23,4 @@ const follower = sequelize.define("follower", {
     tableName: 'follower',
     timestamps: false
 })
+module.exports = follower

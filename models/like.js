@@ -19,3 +19,5 @@ const likes = sequelize.define("likes", {
     tableName: 'likes',
     timestamps: false
 })
+
+module.exports = likes
