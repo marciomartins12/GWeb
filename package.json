@@ -4,6 +4,8 @@
   "description": "copia instagram",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "marciomartins12 - github",
@@ -11,6 +13,7 @@
   "dependencies": {
     "express": "^4.21.0",
     "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.0",
     "mysql2": "^3.11.3",
     "sequelize": "^6.37.3"
   }

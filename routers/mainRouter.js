@@ -7,7 +7,7 @@ Router.get("/", (req, res) => {
 })
 
 Router.get("/login", (req, res) => {
-    res.send("login");
+    res.render("login");
 })
 
 

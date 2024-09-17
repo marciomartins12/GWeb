@@ -2,14 +2,10 @@ const express = require("express");
 const app = express();
 const { engine } = require("express-handlebars");
 const Router = require("./routers/mainRouter");
+const session = require("express-session")
+const path = require("path")
 
 
-app.engine("handlebar", engine({
-    defaultLayout: "main", runtimeOptions: {
-        allowProtoPropertiesByDefault: true,
-    }
-}))
-app.set("view engine", "handlebras");
 
 app.engine("handlebars", engine({
     defaultLayout: "main",
@@ -20,14 +16,15 @@ app.engine("handlebars", engine({
         allowProtoPropertiesByDefault: true,
     }
 }));
+app.set("view engine", "handlebars");
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: 'ludovicensestudiositesenhasecreta',
+    secret: 'instagramSenha123',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } 
+    cookie: { secure: false }
 }));
 
 app.use(Router)
