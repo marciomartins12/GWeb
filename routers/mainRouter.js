@@ -1,12 +1,12 @@
 const express = require("express");
 const Router = express.Router();
-
+const userAuthenticate = require("../middlewares/userAuthenticate")
 
 Router.get("/", (req, res) => {
     res.send("home");
 })
 
-Router.get("/login", (req, res) => {
+Router.get("/login",userAuthenticate, (req, res) => {
     res.render("login");
 })
 
