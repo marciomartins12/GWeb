@@ -6,7 +6,7 @@ Router.get("/", (req, res) => {
     res.send("home");
 })
 
-Router.get("/login",userAuthenticate, (req, res) => {
+Router.get("/login", (req, res) => {
     res.render("login");
 })
 

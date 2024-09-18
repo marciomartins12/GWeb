@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Cookie&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pc {
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.pc img {
+    display: none;
+}
+
+@media screen and (min-width: 800px) {
+    .pc img {
+        display: block;
+    }
+    .pc {
+        margin-top: 5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+    }
+    .border {
+        width: 350px;
+        border: 1px solid #d2d2d2;
+        margin-bottom: .75em;
+    }
+    .semConta {
+        padding: 1em;
+        border: 1px solid #d2d2d2;
+    }
+}
+
+.tituloInstagram {
+    margin-top: 1em;
+    font-family: 'Grand Hotel', cursive;
+    font-size: 3em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.formulario {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    --tamanho-width: 70%;
+}
+
+.inpt {
+    width: var(--tamanho-width);
+    padding: .65em 0;
+    border: 1px solid #d2d2d2;
+    border-radius: .22em;
+    margin-bottom: 1em;
+}
+
+.formulario button {
+    background-color: rgb(0, 149, 246);
+    border: none;
+    border-radius: .45em;
+    padding: .75em 0;
+    width: var(--tamanho-width);
+    color: white;
+}
+
+.divOU {
+    margin-top: 1em;
+    font-size: .88em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    color: #777070;
+}
+
+.divOU div {
+    border: 1px solid #e6dede;
+    width: 30%;
+}
+
+.divFuncoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.faceboock {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    gap: .45em;
+    font-size: .94em;
+    color: #385185;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Assistant', sans-serif;
+}
+
+.esqueceuASenha {
+    margin-top: 1.50em;
+    margin-bottom: 5em;
+    text-decoration: none;
+    color: black;
+    font-size: .75em;
+}
+
+.paragrafo {
+    font-size: 0.90em;
+    font-weight: 400;
+    color: red;
+}
+
+.divAplicativos {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    gap: 1em;
+    margin-top: .8em;
+}
+
+.divItemAplicativos {
+    display: flex;
+    gap: .45em;
+    align-items: center;
+    color: white;
+    background-color: black;
+    padding: 0.4em;
+    border-radius: .45em;
+}
+
+.semConta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.semConta a {
+    text-decoration: none;
+    font-size: .8em;
+}
+
+.divLinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .25em .5em;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+}
+.divLinks a{
+    font-size: .80em;
+    text-decoration: none;
+    color: #737373;
+}
+@media screen and (min-width: 800px){
+.divLinks{
+    margin-top: 6em;
+}
+}
+.footer {
+    margin-top: .80em;
+    color: #727272;
+    text-align: center;
+}
+@media  screen and (min-width: 800px) {
+    .footer p{
+        font-size: 0.80em;
+    }
+}
