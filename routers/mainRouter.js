@@ -3,8 +3,8 @@ const Router = express.Router();
 const userModel = require("../models/user");
 const userAuthenticate = require("../middlewares/userAuthenticate")
 
-Router.get("/", (req, res) => {
-    res.send("home");
+Router.get("/",userAuthenticate ,(req, res) => {
+    res.render("home");
 })
 
 Router.get("/login", (req, res) => {
@@ -15,6 +15,7 @@ Router.get("/login", (req, res) => {
 
 
 Router.post("/tryLogin", async(req, res)=>{
+
     const {email, senha } = req.body;
 
     try {
@@ -30,11 +31,8 @@ Router.post("/tryLogin", async(req, res)=>{
             res.redirect("/")
         }).catch(err=>console.log(err))
 
-
-
-
     } catch (error) {
-        
+      console.log(error)  
     }
 })
 

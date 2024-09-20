@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Cookie&family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
 body {
     font-family: Arial, sans-serif;
@@ -18,62 +16,25 @@ body {
     height: 80vh;
 }
 
-.pc {
+.imagemInstagram {
     display: flex;
-    flex-direction: row;
-    background-color: #fff;
-    border: 1px solid #dbdbdb;
-    padding: 20px;
-    border-radius: 10px;
+    justify-content: center;
 }
 
-.pc img {
-    display: none;
-}
-
-@media screen and (min-width: 800px) {
-    .pc img {
-        display: block;
-    }
-    .pc {
-        margin-top: 5em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2em;
-    }
-    .border {
-        width: 350px;
-        border: 1px solid #d2d2d2;
-        margin-bottom: .75em;
-    }
-    .semConta {
-        padding: 1em;
-        border: 1px solid #d2d2d2;
-    }
-}
-
-.tituloInstagram {
-    margin-top: 1em;
-    font-family: 'Grand Hotel', cursive;
-    font-size: 3em;
-    text-align: center;
-    font-weight: 600;
-}
 
 .formulario {
     margin-top: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    --tamanho-width: 70%;
+
 }
 
 .inpt {
-    width: var(--tamanho-width);
+    width: 300px;
     padding: .65em 0;
     border: 1px solid #d2d2d2;
-    border-radius: .22em;
+    border-radius: .5em;
     margin-bottom: 1em;
 }
 
@@ -82,7 +43,7 @@ body {
     border: none;
     border-radius: .45em;
     padding: .75em 0;
-    width: var(--tamanho-width);
+    width: 100px;
     color: white;
 }
 
@@ -178,23 +139,40 @@ body {
     gap: .25em .5em;
     margin-bottom: 1.5em;
 }
-.divLinks a{
+
+.divLinks a {
     font-size: .80em;
     text-decoration: none;
     color: #737373;
 }
-@media screen and (min-width: 800px){
-.divLinks{
-    margin-top: 6em;
-}
-}
+
 .footer {
-    margin-top: .80em;
-    color: #727272;
     text-align: center;
 }
-@media  screen and (min-width: 800px) {
-    .footer p{
-        font-size: 0.80em;
-    }
+
+.menuNavegacaoHomePage {
+    padding: .5em 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgb(66, 64, 64);
+    color: white;
+}
+
+.menuNavegacaoHomePage div {
+    display: flex;
+    align-items: center;
+    gap: .1em;
+}
+
+.menuNavegacaoHomePage div i {
+    font-size: 2em;
+}
+
+
+.menuNavegacaoHomePage svg{
+    margin-left: 1em;
+}
+.menuNavegacaoHomePage .divContainerCabecalho{
+    margin-right: 1em;
 }

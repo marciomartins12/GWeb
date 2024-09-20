@@ -1,7 +1,7 @@
 function userAuthenticate(req, res, next) {
-    const user = req.session.user;
-    if (user.email && user.id) {
-        next()
+
+    if (req.session.user && req.session.user.email) {
+      return  next()
     } else {
         res.redirect("/login")
     }
