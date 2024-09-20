@@ -6,13 +6,16 @@ body {
     background-color: #fafafa;
     margin: 0;
     padding: 0;
+    margin: 0 auto;
+    max-width: 400px;
+    min-width: 400px;
 }
 
 .section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 .pc {
@@ -173,7 +176,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: .25em .5em;
-    margin-top: 2em;
     margin-bottom: 1.5em;
 }
 .divLinks a{
