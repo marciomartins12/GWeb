@@ -7,7 +7,9 @@ body {
     max-width: 400px;
     min-width: 400px;
 }
-
+.home{
+    position: relative;
+}
 .section {
     display: flex;
     justify-content: center;
@@ -154,6 +156,11 @@ body {
 }
 
 .menuNavegacaoHomePage {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: .5em 0;
     display: flex;
     justify-content: space-between;
@@ -180,7 +187,13 @@ body {
 .menuNavegacaoHomePage .divContainerCabecalho {
     margin-right: 1em;
 }
-
+.publics{
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+.publics ul li{
+    margin-bottom: 1em;
+}
 .publics ul li .cabecalhopost  {
     display: flex;
     justify-content: space-between;
@@ -241,4 +254,19 @@ body {
 }
 .curtidas div span{
     font-size: .8em;
+}
+.footerNavHome{
+    border-top: 1px solid rgb(66, 64, 64);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: .5em 0;
+    background-color: black;
+}
+.footerNavHome .imagem{
+    width: 30px;
+border-radius: 50%;
 }
