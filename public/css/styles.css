@@ -288,6 +288,7 @@ body {
 
 .sectionNewPost {
     color: white;
+
 }
 
 .sectionNewPost nav {
@@ -323,6 +324,7 @@ body {
 .btnCompartilhar {
     display: flex;
     justify-content: center;
+    margin-top: 2em;
 }
 
 .btnCompartilhar button {
@@ -333,4 +335,11 @@ body {
     border: none;
     background-color: #007bff;
     color: white;
+}
+
+.formNewPost {
+    display: flex;
+height: 100vh;
+    flex-direction: column;
+    justify-content: space-around;
 }

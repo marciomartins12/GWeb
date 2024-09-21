@@ -3,7 +3,8 @@ const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const Router = express.Router();
 const userModel = require("../models/user");
-const postModel = require("../models/post")
+const postModel = require("../models/post");
+const likeModel = require("../models/like");
 const userAuthenticate = require("../middlewares/userAuthenticate")
 const uploadMultiple = upload.fields([
     { name: 'imagem', maxCount: 1 },
@@ -12,8 +13,24 @@ const uploadMultiple = upload.fields([
 
 
 
-Router.get("/", userAuthenticate, (req, res) => {
-    res.render("home");
+Router.get("/", userAuthenticate, async (req, res) => {
+    const posts = await postModel.findAll()
+    const postsFormatados = await Promise.all(posts.map(async(post) => {
+        let contadorCurtidas = await likeModel.count({
+            where : { post_id : post.idpost}
+        })
+        let user = await userModel.findByPk(post.user_id)
+        return {
+            ...post.dataValues,
+            imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
+            likes : contadorCurtidas,
+            user_post : user.nome,
+            img_user : user.foto_perfil
+        }
+    })) 
+
+
+    res.render("home", postsFormatados);
 });
 
 Router.get("/login", (req, res) => {
