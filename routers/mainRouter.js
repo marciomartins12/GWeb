@@ -5,7 +5,8 @@ const Router = express.Router();
 const userModel = require("../models/user");
 const postModel = require("../models/post");
 const likeModel = require("../models/like");
-const userAuthenticate = require("../middlewares/userAuthenticate")
+const userAuthenticate = require("../middlewares/userAuthenticate");
+
 const uploadMultiple = upload.fields([
     { name: 'imagem', maxCount: 1 },
 ]);
@@ -40,7 +41,9 @@ Router.get("/login", (req, res) => {
 Router.get("/newPost", userAuthenticate, (req, res) => {
     res.render("newPost");
 })
-
+Router.get("/perfil", userAuthenticate, (req, res)=>{
+    res.render("perfil");
+})
 
 
 

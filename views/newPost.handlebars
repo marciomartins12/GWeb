@@ -5,19 +5,45 @@
         <h2>Nova publicação</h2>
     </nav>
 
-
     <form class="formNewPost" action="enviandoNewPost" method="post" enctype="multipart/form-data">
+         <div>
+            <img id="previewImagem" src="" alt="Pré-visualização da imagem" style="max-width: 100%; display: none;">
+        </div>
         <div>
-
             <input class="inputImagem" type="file" name="imagem" id="imagem">
             <input class="inputLegenda" type="text" placeholder="Escreva uma legenda..." name="legenda">
         </div>
 
+      
+       
 
         <div class="btnCompartilhar">
             <button>Compartilhar</button>
-
         </div>
     </form>
-
 </section>
+
+<script>
+
+    const inputImagem = document.getElementById('imagem');
+    const previewImagem = document.getElementById('previewImagem');
+
+    inputImagem.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                previewImagem.src = event.target.result;
+                previewImagem.style.display = 'block';
+            }
+
+    
+            reader.readAsDataURL(file);
+        } else {
+       
+            previewImagem.style.display = 'none';
+        }
+    });
+</script>

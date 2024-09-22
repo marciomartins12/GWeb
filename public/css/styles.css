@@ -190,6 +190,11 @@ body {
     margin-right: 1em;
 }
 
+.divContainerCabecalho a {
+    color: white;
+    text-decoration: none;
+}
+
 .publics {
     margin-top: 3em;
     margin-bottom: 3em;
@@ -226,11 +231,12 @@ body {
     align-items: center;
 }
 
-.imagemPostada {
+.imagemPostada,
+#previewImagem {
     margin-top: 1em;
     width: 400px;
     height: 400px;
-    object-fit:cover ;
+    object-fit: cover;
 }
 
 .menuLikeComments {
@@ -283,6 +289,11 @@ body {
     background-color: black;
 }
 
+.footerNavHome a {
+    text-decoration: none;
+    color: white;
+}
+
 .footerNavHome .imagem {
     width: 30px;
     border-radius: 50%;
@@ -330,7 +341,7 @@ body {
 }
 
 .btnCompartilhar button {
-    margin-top: 4em;
+
     padding: 1em;
     font-size: 1em;
     border-radius: .56em;
@@ -341,7 +352,10 @@ body {
 
 .formNewPost {
     display: flex;
-height: 100vh;
+    height: 100vh;
     flex-direction: column;
     justify-content: space-around;
+}
+.perfil{
+    position: relative;
 }
