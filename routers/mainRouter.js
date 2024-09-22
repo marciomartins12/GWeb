@@ -15,22 +15,22 @@ const uploadMultiple = upload.fields([
 
 Router.get("/", userAuthenticate, async (req, res) => {
     const posts = await postModel.findAll()
-    const postsFormatados = await Promise.all(posts.map(async(post) => {
+    const postsFormatados = await Promise.all(posts.map(async (post) => {
         let contadorCurtidas = await likeModel.count({
-            where : { post_id : post.idpost}
+            where: { post_id: post.idpost }
         })
         let user = await userModel.findByPk(post.user_id)
         return {
             ...post.dataValues,
             imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
-            likes : contadorCurtidas,
-            user_post : user.nome,
-            img_user : user.foto_perfil
+            likes: contadorCurtidas,
+            user_post: user.nome,
+            img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : null
         }
-    })) 
+    }))
 
 
-    res.render("home", postsFormatados);
+    res.render("home", { postsFormatados: postsFormatados });
 });
 
 Router.get("/login", (req, res) => {

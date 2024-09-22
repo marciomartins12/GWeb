@@ -77,8 +77,8 @@
             <li>
                 <div class="cabecalhopost">
                     <div>
-                        <img src={{}} alt="imagem usuario">
-                        <h2>{{}}</h2>
+                        <img src={{img_user}} alt="imagem usuario">
+                        <h2>{{user_post}}</h2>
                     </div>
                     <svg aria-label="Mais opções" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24"
                         role="img" viewBox="0 0 24 24" width="24">
@@ -88,7 +88,7 @@
                         <circle cx="18" cy="12" r="1.5"></circle>
                     </svg>
                 </div>
-                <img class="imagemPostada" src={{}} alt="img public">
+                <img class="imagemPostada" src={{imagem_post}} alt="img public">
                 <div class="menuLikeComments">
                     <svg aria-label="Curtir" class="x1lliihq x1n2onr6 xyb1xck" fill="currentColor" height="24"
                         role="img" viewBox="0 0 24 24" width="24">
@@ -105,17 +105,17 @@
                     </svg>
                 </div>
                 <div class="curtidas">
-                    <p>{{}} curtidas</p>
+                    <p>{{likes}} curtidas</p>
                     <div>
-                        <h3>{{}}</h3>
-                        <span>{{}}</span>
+                        <h3>{{user_post}}</h3>
+                        <span>{{legenda}}</span>
                     </div>
-                    <a href="verComentarios/{{}}">ver todos os comentários</a>
+                    <a href="verComentarios/{{idpost}}">ver todos os comentários</a>
                 </div>
             </li>
             {{/each}}
             
-        </ul>
+        </ul> 
 
         <nav class="footerNavHome">
 

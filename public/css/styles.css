@@ -229,6 +229,8 @@ body {
 .imagemPostada {
     margin-top: 1em;
     width: 400px;
+    height: 400px;
+    object-fit:cover ;
 }
 
 .menuLikeComments {
