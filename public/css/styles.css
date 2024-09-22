@@ -356,15 +356,17 @@ body {
     flex-direction: column;
     justify-content: space-around;
 }
-.perfil{
+
+.perfil {
     position: relative;
     color: white;
 }
-.sectionPerfil .cabecalhoPerfil{
-    
+
+.sectionPerfil .cabecalhoPerfil {
+
     display: flex;
     justify-content: space-around;
     align-items: center;
-  padding: .5em 0;
+    padding: .5em 0;
     border-bottom: 1px solid rgb(103, 103, 103);
 }
