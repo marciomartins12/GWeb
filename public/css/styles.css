@@ -199,7 +199,9 @@ body {
     margin-top: 3em;
     margin-bottom: 3em;
 }
-
+.publics ul{
+    margin-bottom: 5em;
+}
 .publics ul li {
     margin-bottom: 1em;
 }
