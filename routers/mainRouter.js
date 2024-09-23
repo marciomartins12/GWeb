@@ -38,6 +38,9 @@ Router.get("/", userAuthenticate, async (req, res) => {
 Router.get("/login", (req, res) => {
     res.render("login");
 });
+Router.get("createAccount", (req,res)=>{
+    res.render("createAccount")
+})
 
 Router.get("/newPost", userAuthenticate, (req, res) => {
     res.render("newPost");
