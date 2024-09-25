@@ -22,7 +22,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
             where: { post_id: post.idpost }
         })
         let user = await userModel.findByPk(post.user_id)
-        
+
         return {
             ...post.dataValues,
             imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
@@ -38,18 +38,34 @@ Router.get("/", userAuthenticate, async (req, res) => {
 Router.get("/login", (req, res) => {
     res.render("login");
 });
-Router.get("createAccount", (req,res)=>{
-    res.render("createAccount")
-})
 
+Router.get("createAccount", (req, res) => {
+    res.render("createAccount")
+});
+
+Router.post("/creatingAccount", (req, res) => {
+    const dataAtual = new Date().toISOString().slice(0, 10)
+    const { username, email, senha } = req.body;
+    try {
+        userModel.create({
+            nome: username,
+            email: email,
+            senha: senha,
+            foto_perfil : "teste",
+            data_criacao : dataAtual,
+
+        });
+    } catch (error) {
+        console.log(error)
+    }
+})
 Router.get("/newPost", userAuthenticate, (req, res) => {
     res.render("newPost");
 });
+
 Router.get("/perfil", userAuthenticate, (req, res) => {
     res.render("perfil");
 });
-
-
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
     const imagem = req.files['imagem'] ? req.files['imagem'][0].buffer : null;
@@ -65,7 +81,6 @@ Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, re
         })
         res.redirect("/")
     } catch (error) {
-        console.log("error : ", error)
         res.send("erro ao enviar a imagem. ")
     }
 })
