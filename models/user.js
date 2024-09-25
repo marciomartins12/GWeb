@@ -21,7 +21,7 @@ const user = sequelize.define("user", {
     },
     bio: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     foto_perfil: {
         type: Sequelize.BLOB("medium"),

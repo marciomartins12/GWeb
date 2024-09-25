@@ -22,7 +22,7 @@ body {
 .imagemInstagram {
     display: flex;
     justify-content: center;
-   
+
 }
 
 
@@ -407,7 +407,55 @@ body {
     background-color: #272727;
 }
 
-/* Adiciona margem para ajustar o layout */
+
 .formNewPost div {
     margin-bottom: 15px;
+}
+
+.createAccount {
+    color: white;
+}
+
+.createAccount form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.createAccount form input {
+    color: white;
+    width: 80%;
+    padding: 1em;
+    margin: 0 auto;
+    border: none;
+    background-color: #6e6e6e;
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+.createAccount form label {
+    margin-left: 2.2em;
+    margin-bottom: .4em;
+    font-weight: 600;
+}
+.createAccount nav{
+    display: flex;
+    gap: 1em;
+    margin-left: 1em
+}
+
+.createAccount input::placeholder {
+    color: black;
+}
+.btnCriarConta{
+    display: flex;
+    justify-content: center;
+}
+.btnCriarConta button{
+    border: none;
+    border-radius: 1em;
+    background-color: #007bff;
+    color: white;
+    padding: 1em;
+    font-weight: 600;
 }

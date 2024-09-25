@@ -28,7 +28,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
             imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
             likes: contadorCurtidas,
             user_post: user.nome,
-            img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "../public/img/fotoPerfilPadrao.png"
+            img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         }
     }))
     res.render("home", { postsFormatados: postsFormatados });
@@ -39,7 +39,7 @@ Router.get("/login", (req, res) => {
     res.render("login");
 });
 
-Router.get("createAccount", (req, res) => {
+Router.get("/createAccount", (req, res) => {
     res.render("createAccount")
 });
 
@@ -54,6 +54,7 @@ Router.post("/creatingAccount", async(req, res) => {
             data_criacao : dataAtual,
 
         });
+        res.redirect("/login")
     } catch (error) {
         console.log(error)
     }
