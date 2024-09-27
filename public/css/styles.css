@@ -464,8 +464,8 @@ body {
     margin-left: 1em;
 }
 .perfil img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -491,4 +491,31 @@ body {
    text-align: center;
    border-radius: .5em;
    background-color: #363636;
+}
+.rodapeCabecalho{
+  margin-top: 1em;
+   border-top: 1px;
+   border-bottom: 1px;
+   padding: 1em;
+   border-style: solid;
+   border-color: rgb(53, 53, 53);
+    display: flex;
+    justify-content: space-around;
+
+}
+.rodapeCabecalho div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.bio {
+    margin-top: 1em;
+    margin-left: 1em;
+}
+.bio h3{
+    font-size: .9em;
+}
+.bio p {
+    font-size: .8em;
 }

@@ -74,7 +74,10 @@ Router.get("/perfil", userAuthenticate, async (req, res) => {
     const countFollowing = await followerModel.count({where : {seguidor_id : req.session.user.id}});
     const countFollower = await followerModel.count({where : {user_id : req.session.user.id}});
 
-    res.render("perfil", {totalPost : countPosts, totalSeguindo : countFollowing, totalSeguidores : countFollower});
+const user = await userModel.findByPk(req.session.user.id)
+
+
+    res.render("perfil", {totalPost : countPosts, totalSeguindo : countFollowing, totalSeguidores : countFollower, userName : user.nome, bio: user.bio});
 });
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
