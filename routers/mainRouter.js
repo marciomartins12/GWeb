@@ -5,6 +5,7 @@ const Router = express.Router();
 const userModel = require("../models/user");
 const postModel = require("../models/post");
 const likeModel = require("../models/like");
+const followerModel = require("../models/followers");
 const userAuthenticate = require("../middlewares/userAuthenticate");
 
 const uploadMultiple = upload.fields([
@@ -68,8 +69,12 @@ Router.get("/newPost", userAuthenticate, (req, res) => {
     res.render("newPost");
 });
 
-Router.get("/perfil", userAuthenticate, (req, res) => {
-    res.render("perfil");
+Router.get("/perfil", userAuthenticate, async (req, res) => {
+    const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
+    const countFollowing = await followerModel.count({where : {seguidor_id : req.session.user.id}});
+    const countFollower = await followerModel.count({where : {user_id : req.session.user.id}});
+
+    res.render("perfil", {totalPost : countPosts, totalSeguindo : countFollowing, totalSeguidores : countFollower});
 });
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
