@@ -26,7 +26,9 @@ body {
 
 }
 
-
+.comentariosA{
+    font-size: .7em;
+}
 .formulario {
     margin-top: 2em;
     display: flex;
