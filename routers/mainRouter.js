@@ -30,8 +30,13 @@ Router.get("/", userAuthenticate, async (req, res) => {
             user_post: user.nome,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         }
-    }))
-    res.render("home", { postsFormatados: postsFormatados });
+    }));
+    
+    if(postsFormatados[0]){
+        res.render("home", { postsFormatados: postsFormatados });
+    }else {
+        res.render("home", {mensagem : "<p class='mesangemF'>Nenhuma postagem foi encontrada.</p>" });
+    }
 
 });
 
