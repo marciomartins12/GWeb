@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: black;
@@ -459,4 +460,33 @@ body {
 .mesangemF{
     color: red;
     margin-left: 1em;
+}
+.perfil img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.perfilInfos{
+    display: flex;
+    margin-top: 3em;
+    gap: 2em;
+    margin-left: 1em;
+}
+.perfilInfos div span{
+    display: flex;
+    gap: .4em    ;
+    flex-direction: column;
+}
+.perfilInfos div span h2 {
+   color: #F5f5f5;
+}
+.perfilInfos div span a {
+   color: white;
+   font-size: .8em;
+   text-decoration: none;
+   padding: .5em;
+   text-align: center;
+   border-radius: .5em;
+   background-color: #363636;
 }
