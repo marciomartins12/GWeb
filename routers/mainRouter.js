@@ -31,11 +31,11 @@ Router.get("/", userAuthenticate, async (req, res) => {
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         }
     }));
-    
-    if(postsFormatados[0]){
+
+    if (postsFormatados[0]) {
         res.render("home", { postsFormatados: postsFormatados });
-    }else {
-        res.render("home", {mensagem : "<p class='mesangemF'>Nenhuma postagem foi encontrada.</p>" });
+    } else {
+        res.render("home", { mensagem: "<p class='mesangemF'>Nenhuma postagem foi encontrada.</p>" });
     }
 
 });
@@ -48,7 +48,7 @@ Router.get("/createAccount", (req, res) => {
     res.render("createAccount")
 });
 
-Router.post("/creatingAccount", async(req, res) => {
+Router.post("/creatingAccount", async (req, res) => {
     const dataAtual = new Date().toISOString().slice(0, 10)
     const { username, email, senha } = req.body;
     try {
@@ -56,7 +56,7 @@ Router.post("/creatingAccount", async(req, res) => {
             nome: username,
             email: email,
             senha: senha,
-            data_criacao : dataAtual,
+            data_criacao: dataAtual,
 
         });
         res.redirect("/login")
@@ -105,7 +105,7 @@ Router.post("/tryLogin", async (req, res) => {
             }
 
             res.redirect("/")
-        }).catch(err => console.log(err))
+        }).catch(err => { res.render("login", { mensagem: "<p class='mesangemF'>Email ou senha incorretos.</p>" }) })
 
     } catch (error) {
         console.log(error)
