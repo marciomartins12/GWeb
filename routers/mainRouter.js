@@ -29,7 +29,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
             imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
             likes: contadorCurtidas,
             user_post: user.nome,
-            userId: user.id,
+            userId: user.iduser,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         }
     }));
@@ -139,7 +139,7 @@ Router.get("/post/:id",userAuthenticate ,async (req, res) => {
             imagem_post: `data:image/png;base64,${post.imagem_post.toString("base64")}`,
             likes: contadorCurtidas,
             user_post: user.nome,
-            userId: user.id,
+            userId: user.iduser,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         };
 
