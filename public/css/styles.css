@@ -219,6 +219,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 440px;
 }
 
 .cabecalhopost {
@@ -243,6 +244,7 @@ text-decoration: none;
 
 .publics ul li div a {
     display: flex;
+
     gap: .5em;
     align-items: center;
 }
@@ -252,6 +254,16 @@ text-decoration: none;
     width: 400px;
     height: 400px;
     object-fit: cover;
+}
+@media screen and (min-width : 320px) {
+    
+    .imagemPostada {
+        margin-top: 1em;
+        width: 430px;
+        height: 430px;
+        object-fit: cover;
+    }
+    
 }
 
 #previewImagem {
