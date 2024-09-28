@@ -71,13 +71,20 @@ Router.get("/newPost", userAuthenticate, (req, res) => {
 
 Router.get("/perfil", userAuthenticate, async (req, res) => {
     const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
-    const countFollowing = await followerModel.count({where : {seguidor_id : req.session.user.id}});
-    const countFollower = await followerModel.count({where : {user_id : req.session.user.id}});
+    const countFollowing = await followerModel.count({ where: { seguidor_id: req.session.user.id } });
+    const countFollower = await followerModel.count({ where: { user_id: req.session.user.id } });
 
-const user = await userModel.findByPk(req.session.user.id)
+    const user = await userModel.findByPk(req.session.user.id);
 
+    const postsUser = await postModel.findAll({ where: { user_id: req.session.user.id } })
+    const postsFormatados = postsUser.map((post) => {
+        return {
+            ...post.dataValues,
+            imagem_post : `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
+        }
+    })
 
-    res.render("perfil", {totalPost : countPosts, totalSeguindo : countFollowing, totalSeguidores : countFollower, userName : user.nome, bio: user.bio});
+    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts : postsFormatados});
 });
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
@@ -94,6 +101,7 @@ Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, re
         })
         res.redirect("/")
     } catch (error) {
+        console.log(error)
         res.send("erro ao enviar a imagem. ")
     }
 })

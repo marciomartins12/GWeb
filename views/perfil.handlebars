@@ -27,7 +27,6 @@
             <h3>{{userName}}</h3>
             <p>{{bio}}</p>
         </div>
-
         <div class="rodapeCabecalho">
             <div>
                 <p>{{totalPost}}</p>
@@ -41,10 +40,16 @@
                 <p>{{totalSeguindo}}</p>
                 <p>seguindo</p>
             </div>
-
-
         </div>
-
+      <ul class="postsPerfil">
+        {{#each posts}}
+        <li>
+            <a href="/post/{{idpost}}">
+            <img src={{imagem_post}} alt="imagem Post">
+            </a>
+        </li>
+        {{/each }}
+      </ul>
 
 
 

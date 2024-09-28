@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: black;
@@ -26,9 +25,10 @@ body {
 
 }
 
-.comentariosA{
+.comentariosA {
     font-size: .7em;
 }
+
 .formulario {
     margin-top: 2em;
     display: flex;
@@ -437,7 +437,7 @@ body {
 }
 
 
-.createAccount nav{
+.createAccount nav {
     display: flex;
     gap: 1em;
     margin-top: 1em;
@@ -447,11 +447,13 @@ body {
 .createAccount input::placeholder {
     color: black;
 }
-.btnCriarConta{
+
+.btnCriarConta {
     display: flex;
     justify-content: center;
 }
-.btnCriarConta button{
+
+.btnCriarConta button {
     border: none;
     border-radius: 1em;
     background-color: #007bff;
@@ -459,63 +461,92 @@ body {
     padding: 1em;
     font-weight: 600;
 }
-.mesangemF{
+
+.mesangemF {
     color: red;
     margin-left: 1em;
 }
-.perfil img {
+
+.perfilInfos img {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 50%;
 }
-.perfilInfos{
+
+.perfilInfos {
     display: flex;
     margin-top: 3em;
     gap: 2em;
     margin-left: 1em;
 }
-.perfilInfos div span{
+
+.perfilInfos div span {
     display: flex;
-    gap: .4em    ;
+    gap: .4em;
     flex-direction: column;
 }
+
 .perfilInfos div span h2 {
-   color: #F5f5f5;
+    color: #F5f5f5;
 }
+
 .perfilInfos div span a {
-   color: white;
-   font-size: .8em;
-   text-decoration: none;
-   padding: .5em;
-   text-align: center;
-   border-radius: .5em;
-   background-color: #363636;
+    color: white;
+    font-size: .8em;
+    text-decoration: none;
+    padding: .5em;
+    text-align: center;
+    border-radius: .5em;
+    background-color: #363636;
 }
-.rodapeCabecalho{
-  margin-top: 1em;
-   border-top: 1px;
-   border-bottom: 1px;
-   padding: 1em;
-   border-style: solid;
-   border-color: rgb(53, 53, 53);
+
+.rodapeCabecalho {
+    margin-top: 1em;
+    border-top: 1px;
+    border-bottom: 1px;
+    padding: 1em;
+    border-style: solid;
+    border-color: rgb(53, 53, 53);
     display: flex;
     justify-content: space-around;
-
+margin-bottom: .5em;
 }
-.rodapeCabecalho div{
+
+.rodapeCabecalho div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .bio {
     margin-top: 1em;
     margin-left: 1em;
 }
-.bio h3{
+
+.bio h3 {
     font-size: .9em;
 }
+
 .bio p {
     font-size: .8em;
+}
+
+.postsPerfil {
+    width: 98%;
+    margin: 0 auto;
+    display: flex;
+    gap: .3em;
+    flex-wrap: wrap;
+}
+
+.postsPerfil li a {
+    text-decoration: none;
+}
+
+.postsPerfil li a img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
 }
