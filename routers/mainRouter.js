@@ -80,11 +80,11 @@ Router.get("/perfil", userAuthenticate, async (req, res) => {
     const postsFormatados = postsUser.map((post) => {
         return {
             ...post.dataValues,
-            imagem_post : `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
+            imagem_post: `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
         }
     })
 
-    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts : postsFormatados});
+    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados });
 });
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
@@ -127,5 +127,25 @@ Router.post("/tryLogin", async (req, res) => {
         console.log(error)
     }
 })
+Router.get("/post/:id", async (req, res) => {
+    const post = await postModel.findByPk(req.params.id);
 
+    if (post) {
+        const user = await userModel.findByPk(post.user_id);
+        const contadorCurtidas = await likeModel.count({where : {post_id : post.idpost }})
+        const postFormatado = {
+            ...post.dataValues,
+            imagem_post: `data:image/png;base64,${post.imagem_post.toString("base64")}`,
+            likes: contadorCurtidas,
+            user_post: user.nome,
+            userId: user.id,
+            img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+        };
+
+        res.render("viewPost", { postFormatado: postFormatado })
+    } else {
+        res.status(404).send('Postagem não encontrada');
+    }
+
+})
 module.exports = Router

@@ -201,6 +201,7 @@ body {
 }
 
 .publics {
+    color: white;
     margin-top: 3em;
     margin-bottom: 3em;
 }
@@ -213,29 +214,34 @@ body {
     margin-bottom: 1em;
 }
 
-.publics ul li .cabecalhopost {
+.cabecalhopost {
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.publics ul li .cabecalhopost {
+.cabecalhopost {
     margin: 0 .5em;
 }
 
-.publics ul li div div img {
+.publics ul li div a img {
     width: 40px;
-
     border-radius: 50%;
     height: auto;
 
 }
+.publics ul li div a  {
 
-.publics ul li div div h2 {
+color: white;
+text-decoration: none;
+}
+
+.publics ul li div a h2 {
     font-weight: 600;
 }
 
-.publics ul li div div {
+.publics ul li div a {
     display: flex;
     gap: .5em;
     align-items: center;
@@ -259,6 +265,7 @@ body {
     display: flex;
     justify-content: start;
     gap: 1em;
+    color: white;
     margin-left: 1em;
 }
 
@@ -320,15 +327,7 @@ body {
 
 }
 
-.sectionNewPost nav {
-    display: flex;
-    align-items: center;
-    margin-left: 1em;
-    gap: .8em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    font-weight: 600;
-}
+
 
 .inputLegenda {
     width: 80%;
@@ -437,13 +436,6 @@ body {
 }
 
 
-.createAccount nav {
-    display: flex;
-    gap: 1em;
-    margin-top: 1em;
-    margin-left: 1em
-}
-
 .createAccount input::placeholder {
     color: black;
 }
@@ -510,7 +502,7 @@ body {
     border-color: rgb(53, 53, 53);
     display: flex;
     justify-content: space-around;
-margin-bottom: .5em;
+    margin-bottom: .5em;
 }
 
 .rodapeCabecalho div {
@@ -546,7 +538,36 @@ margin-bottom: .5em;
 }
 
 .postsPerfil li a img {
-    width: 130px;
-    height: 130px;
+    width: 125px;
+    height: 125px;
     object-fit: cover;
+}
+@media screen and (min-width : 430px){
+    .postsPerfil li a img {
+        width: 134px;
+        height: 134px;
+        object-fit: cover;
+    }
+}
+.viewPost { 
+    position: relative;
+}
+.viewPost nav,
+.createAccount nav,
+.sectionNewPost nav {
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+    margin-top: 1em;
+    gap: 1em;
+    color: white;
+}
+
+ 
+
+.viewPost nav a,
+.createAccount nav a,
+.sectionNewPost nav a{
+    color: white;
+    transform: rotate(270deg);
 }
