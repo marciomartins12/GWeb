@@ -18,7 +18,8 @@ Router.get("/", userAuthenticate, async (req, res) => {
 
     const posts = await postModel.findAll();
     const usuarioLogado = await userModel.findByPk(req.session.user.id)
-   const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+    const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+
     const postsFormatados = await Promise.all(posts.map(async (post) => {
         let contadorCurtidas = await likeModel.count({
             where: { post_id: post.idpost }
@@ -75,6 +76,8 @@ Router.get("/perfil", userAuthenticate, async (req, res) => {
     const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
     const countFollowing = await followerModel.count({ where: { seguidor_id: req.session.user.id } });
     const countFollower = await followerModel.count({ where: { user_id: req.session.user.id } });
+    const usuarioLogado = await userModel.findByPk(req.session.user.id)
+    const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
 
     const user = await userModel.findByPk(req.session.user.id);
 
@@ -83,11 +86,22 @@ Router.get("/perfil", userAuthenticate, async (req, res) => {
         return {
             ...post.dataValues,
             imagem_post: `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
+
         }
     })
 
-    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados });
+    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem});
 });
+
+Router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).send('Erro ao deslogar');
+      }
+      res.redirect('/login'); 
+    });
+  });
+  
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
     const imagem = req.files['imagem'] ? req.files['imagem'][0].buffer : null;

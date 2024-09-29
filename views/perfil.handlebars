@@ -11,10 +11,10 @@
                     fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
             </svg>
             <h2>{{userName}}</h2>
-            <p>sair</p>
+            <p id="logout">Sair</p>
         </div>
         <div class="perfilInfos">
-            <img src="https://avatars.githubusercontent.com/u/118389170?v=4" alt="imagem perfil usuario">
+            <img src={{imagem}} alt="imagem perfil usuario">
             <div>
                 <span>
                     <h2>{{userName}}</h2>
@@ -108,6 +108,20 @@
 
     </a>
     <a href="/perfil">
-        <img class="imagem" src="https://avatars.githubusercontent.com/u/118389170?v=4" alt="imagem perfil user">
+        <img class="imagem" src={{imagem}} alt="imagem perfil user">
     </a>
 </nav>
+
+<script >
+    document.getElementById('logout').addEventListener('click', function() {
+  fetch('/logout', {
+    method: 'POST',
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = '/login';
+    }
+  });
+});
+
+</script>
