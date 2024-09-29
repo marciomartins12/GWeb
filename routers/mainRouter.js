@@ -72,36 +72,15 @@ Router.get("/newPost", userAuthenticate, (req, res) => {
     res.render("newPost");
 });
 
-Router.get("/perfil", userAuthenticate, async (req, res) => {
-    const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
-    const countFollowing = await followerModel.count({ where: { seguidor_id: req.session.user.id } });
-    const countFollower = await followerModel.count({ where: { user_id: req.session.user.id } });
-    const usuarioLogado = await userModel.findByPk(req.session.user.id)
-    const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
-
-    const user = await userModel.findByPk(req.session.user.id);
-
-    const postsUser = await postModel.findAll({ where: { user_id: req.session.user.id } })
-    const postsFormatados = postsUser.map((post) => {
-        return {
-            ...post.dataValues,
-            imagem_post: `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
-
-        }
-    })
-
-    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem});
-});
-
 Router.post('/logout', (req, res) => {
     req.session.destroy((err) => {
-      if (err) {
-        return res.status(500).send('Erro ao deslogar');
-      }
-      res.redirect('/login'); 
+        if (err) {
+            return res.status(500).send('Erro ao deslogar');
+        }
+        res.redirect('/login');
     });
-  });
-  
+});
+
 
 Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, res) => {
     const imagem = req.files['imagem'] ? req.files['imagem'][0].buffer : null;
@@ -165,15 +144,59 @@ Router.get("/post/:id", userAuthenticate, async (req, res) => {
     }
 
 })
-Router.get("/perfilUsuario/:id", userAuthenticate, (req, res) => {
+Router.get("/perfil", userAuthenticate, async (req, res) => {
+
+    const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
+    const countFollowing = await followerModel.count({ where: { seguidor_id: req.session.user.id } });
+    const countFollower = await followerModel.count({ where: { user_id: req.session.user.id } });
+    const usuarioLogado = await userModel.findByPk(req.session.user.id)
+    const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+
+    const user = await userModel.findByPk(req.session.user.id);
+
+    const postsUser = await postModel.findAll({ where: { user_id: req.session.user.id } })
+    const postsFormatados = postsUser.map((post) => {
+
+        return {
+            ...post.dataValues,
+            imagem_post: `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
+
+        }
+    })
+
+    res.render("perfil", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem });
+});
+
+Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
     const idUser = req.session.user.id;
     const contaSelecionada = req.params.id;
-    console.log("id usuario : ", idUser);
 
     if (idUser == contaSelecionada) {
         return res.redirect("/perfil")
     }
+    const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
+    const countFollowing = await followerModel.count({ where: { seguidor_id: req.session.user.id } });
+    const countFollower = await followerModel.count({ where: { user_id: req.session.user.id } });
+    const usuarioLogado = await userModel.findByPk(req.session.user.id)
+    const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
 
-    res.send("perfil usuario ")
+    const user = await userModel.findByPk(req.session.user.id);
+
+    const postsUser = await postModel.findAll({ where: { user_id: req.session.user.id } });
+    const seguindoOrnot = await followerModel.findOne(
+        { where: { user_id: contaSelecionada, seguidor_id: idUser } }
+    )
+    console.log(seguindoOrnot)
+    const postsFormatados = postsUser.map((post) => {
+        return {
+            ...post.dataValues,
+            imagem_post: `data:imagem/png;base64,${post.imagem_post.toString("base64")}`
+
+        }
+    })
+    res.render("perfilUsuario", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem, userid: user.iduser });
 })
+
+
+
 module.exports = Router
