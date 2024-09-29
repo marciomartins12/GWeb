@@ -17,7 +17,8 @@ const uploadMultiple = upload.fields([
 Router.get("/", userAuthenticate, async (req, res) => {
 
     const posts = await postModel.findAll();
-
+    const usuarioLogado = await userModel.findByPk(req.session.user.id)
+   const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
     const postsFormatados = await Promise.all(posts.map(async (post) => {
         let contadorCurtidas = await likeModel.count({
             where: { post_id: post.idpost }
@@ -35,7 +36,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
     }));
 
     if (postsFormatados[0]) {
-        res.render("home", { postsFormatados: postsFormatados });
+        res.render("home", { postsFormatados: postsFormatados, imagem });
     } else {
         res.render("home", { mensagem: "<p class='mesangemF'>Nenhuma postagem foi encontrada.</p>" });
     }
@@ -95,7 +96,7 @@ Router.post("/enviandoNewPost", userAuthenticate, uploadMultiple, async (req, re
     const { legenda } = req.body;
     try {
         await postModel.create({
-            user_id: 1,
+            user_id: req.session.user.id,
             legenda: legenda,
             imagem_post: imagem,
             data_post: dataAtual
@@ -128,18 +129,19 @@ Router.post("/tryLogin", async (req, res) => {
         console.log(error)
     }
 })
-Router.get("/post/:id",userAuthenticate ,async (req, res) => {
+Router.get("/post/:id", userAuthenticate, async (req, res) => {
     const post = await postModel.findByPk(req.params.id);
 
     if (post) {
         const user = await userModel.findByPk(post.user_id);
-        const contadorCurtidas = await likeModel.count({where : {post_id : post.idpost }})
+
+        const contadorCurtidas = await likeModel.count({ where: { post_id: post.idpost } })
         const postFormatado = {
             ...post.dataValues,
             imagem_post: `data:image/png;base64,${post.imagem_post.toString("base64")}`,
             likes: contadorCurtidas,
             user_post: user.nome,
-            userId: user.iduser,
+            idusuario: user.iduser,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         };
 
@@ -148,5 +150,16 @@ Router.get("/post/:id",userAuthenticate ,async (req, res) => {
         res.status(404).send('Postagem não encontrada');
     }
 
+})
+Router.get("/perfilUsuario/:id", userAuthenticate, (req, res) => {
+    const idUser = req.session.user.id;
+    const contaSelecionada = req.params.id;
+    console.log("id usuario : ", idUser);
+
+    if (idUser == contaSelecionada) {
+        return res.redirect("/perfil")
+    }
+
+    res.send("perfil usuario ")
 })
 module.exports = Router

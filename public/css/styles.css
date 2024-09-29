@@ -313,8 +313,10 @@ text-decoration: none;
 }
 
 .footerNavHome {
+  
     border-top: 1px solid rgb(66, 64, 64);
     position: fixed;
+   
     bottom: 0;
     left: 0;
     width: 100%;

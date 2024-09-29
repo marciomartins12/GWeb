@@ -15,7 +15,7 @@
         <ul>
             <li>
                 <div class="cabecalhopost">
-                    <a href="/perfilUsuario/{{userId}}">
+                    <a href="/perfilUsuario/{{postFormatado.idusuario}}">
                         <img src={{postFormatado.img_user}} alt="imagem usuario">
                         <h2>{{postFormatado.user_post}}</h2>
                     </a>
@@ -106,7 +106,7 @@
 
     </a>
     <a href="/perfil">
-        <img class="imagem" src="https://avatars.githubusercontent.com/u/118389170?v=4" alt="imagem perfil user">
+        <img class="imagem" src={{imagem}} alt="imagem perfil user">
     </a>
 </div>
 </section>
