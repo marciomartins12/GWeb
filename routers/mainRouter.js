@@ -188,8 +188,8 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
     const seguindoOrnot = await followerModel.findOne(
         { where: { user_id: contaSelecionada, seguidor_id: idUser } }
     )
-    let verifyfollower = seguindoOrnot ? "seguindo":"seguir"
-    
+    let verifyfollower = seguindoOrnot ? "seguindo" : "seguir"
+
     const postsFormatados = postsUser.map((post) => {
         return {
             ...post.dataValues,
@@ -200,6 +200,26 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
     res.render("perfilUsuario", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem, userid: user.iduser, verifyfollower });
 })
 
+Router.post("/unfollow:id", userAuthenticate, async (req, res) => {
+    const unfollow = req.params.id;
+    const user = req.session.user.id;
 
+    await followerModel.destroy({ where: { user_id: unfollow, seguidor_id: user } }).then(() => {
+        res.redirect(`/perfilUsuario/${unfollow}`)
+    }).catch((err) => console.log(err))
+
+});
+
+Router.post("/follow:id", userAuthenticate, async (req, res) => {
+    const follow = req.params.id;
+    const user = req.session.user.id;
+    const dataAtual = new Date().toISOString().slice(0, 10)
+    await followerModel.create({
+        user_id: follow,
+        seguidor_id: user,
+        data_follower: dataAtual
+    }).then(() => res.redirect(`/perfilUsuario/${follow}`)).catch((err) => console.log(err))
+
+});
 
 module.exports = Router

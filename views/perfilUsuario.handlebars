@@ -106,11 +106,13 @@
 
     {{verifyfollower}}.addEventListener("click", () => {
         if (`{{verifyfollower}}` == "seguindo") {
-          if( confirm("Realmente deseja parar de seuir?")){
-                window.location.href = "/pararDeSeguir/"
+          if( confirm("Realmente deseja parar de seguir?")){
+                window.location.href = `/unfollow/{{userid}}`
           }
         } else if (`{{verifyfollower}}`== "seguir") {
-            console.log("teste")
+            if( confirm("Realmente deseja seguir este usuário?")){
+                window.location.href = `/follow/{{userid}}`
+          }
         }
     })
 </script>
