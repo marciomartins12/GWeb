@@ -230,10 +230,23 @@ Router.post("/follow/:id", userAuthenticate, async (req, res) => {
 
 });
 
-Router.post("/deslike/:id", userAuthenticate, (req, res)=>{
+Router.post("/deslike/:id", userAuthenticate, async (req, res) => {
     const idPost = req.params.id;
     const user = req.session.user.id;
-    
+
+    await likeModel.destroy({ where: { post_id: idPost, user_id: user } }).then(() => {
+        res.redirect(`/post/${idPost}`);
+    }).catch((er)=> console.log(er))
+})
+
+Router.post("/like/:id", userAuthenticate, async (req, res) => {
+    const idPost = req.params.id;
+    const user = req.session.user.id;
+
+    await likeModel.create({
+        post_id : idPost,
+        user_id : user
+    }).then(()=>res.redirect(`/post/${idPost}`)).catch((er)=>console.log(er))
 })
 
 module.exports = Router
