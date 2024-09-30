@@ -1,12 +1,12 @@
 <section class="perfil">
     <section class="sectionPerfil">
-       
+
         <div class="perfilInfos">
             <img src={{imagem}} alt="imagem perfil usuario">
             <div>
                 <span>
                     <h2>{{userName}}</h2>
-                    <a href="/seguir/{{iduser}}">Seguir</a>
+                    <p class={{verifyfollower}}>{{verifyfollower}}</p>
                 </span>
 
             </div>
@@ -29,15 +29,15 @@
                 <p>seguindo</p>
             </div>
         </div>
-      <ul class="postsPerfil">
-        {{#each posts}}
-        <li>
-            <a href="/post/{{idpost}}">
-            <img src={{imagem_post}} alt="imagem Post">
-            </a>
-        </li>
-        {{/each }}
-      </ul>
+        <ul class="postsPerfil">
+            {{#each posts}}
+            <li>
+                <a href="/post/{{idpost}}">
+                    <img src={{imagem_post}} alt="imagem Post">
+                </a>
+            </li>
+            {{/each }}
+        </ul>
 
 
 
@@ -100,3 +100,17 @@
     </a>
 </nav>
 
+
+<script>
+    const {{ verifyfollower }} = document.querySelector(`.{{verifyfollower}}`);
+
+    {{verifyfollower}}.addEventListener("click", () => {
+        if (`{{verifyfollower}}` == "seguindo") {
+          if( confirm("Realmente deseja parar de seuir?")){
+                window.location.href = "/pararDeSeguir/"
+          }
+        } else if (`{{verifyfollower}}`== "seguir") {
+            console.log("teste")
+        }
+    })
+</script>

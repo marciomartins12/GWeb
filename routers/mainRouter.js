@@ -176,7 +176,7 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
     }
 
     const countPosts = await postModel.count({ where: { user_id: contaSelecionada } });
-    const countFollowing = await followerModel.count({ where: { seguidor_id:contaSelecionada } });
+    const countFollowing = await followerModel.count({ where: { seguidor_id: contaSelecionada } });
     const countFollower = await followerModel.count({ where: { user_id: contaSelecionada } });
 
     const usuarioLogado = await userModel.findByPk(req.session.user.id)
@@ -184,11 +184,12 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
 
     const user = await userModel.findByPk(contaSelecionada);
 
-    const postsUser = await postModel.findAll({ where: { user_id: contaSelecionada} });
+    const postsUser = await postModel.findAll({ where: { user_id: contaSelecionada } });
     const seguindoOrnot = await followerModel.findOne(
         { where: { user_id: contaSelecionada, seguidor_id: idUser } }
     )
-    console.log(seguindoOrnot)
+    let verifyfollower = seguindoOrnot ? "seguindo":"seguir"
+    
     const postsFormatados = postsUser.map((post) => {
         return {
             ...post.dataValues,
@@ -196,7 +197,7 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
 
         }
     })
-    res.render("perfilUsuario", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem, userid: user.iduser });
+    res.render("perfilUsuario", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem, userid: user.iduser, verifyfollower });
 })
 
 

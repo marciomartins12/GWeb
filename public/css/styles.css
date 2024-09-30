@@ -506,6 +506,17 @@ text-decoration: none;
     border-radius: .5em;
     background-color: #363636;
 }
+.perfilInfos div span p {
+    font-size: .8em;
+    text-decoration: none;
+    padding: .5em;
+    text-align: center;
+    border-radius: .5em;
+    background-color: #363636;
+}
+.seguindo{
+    color:#2fff59 ;
+}
 
 .rodapeCabecalho {
     margin-top: 1em;
