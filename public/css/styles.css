@@ -579,9 +579,9 @@ text-decoration: none;
 
  
 
-.viewPost nav a,
-.createAccount nav a,
-.sectionNewPost nav a{
+.viewPost nav p,
+.createAccount nav p,
+.sectionNewPost nav p{
     color: white;
     transform: rotate(270deg);
 }

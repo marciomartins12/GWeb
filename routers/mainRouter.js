@@ -174,15 +174,17 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
     if (idUser == contaSelecionada) {
         return res.redirect("/perfil")
     }
-    const countPosts = await postModel.count({ where: { user_id: req.session.user.id } });
-    const countFollowing = await followerModel.count({ where: { seguidor_id: req.session.user.id } });
-    const countFollower = await followerModel.count({ where: { user_id: req.session.user.id } });
+
+    const countPosts = await postModel.count({ where: { user_id: contaSelecionada } });
+    const countFollowing = await followerModel.count({ where: { seguidor_id:contaSelecionada } });
+    const countFollower = await followerModel.count({ where: { user_id: contaSelecionada } });
+
     const usuarioLogado = await userModel.findByPk(req.session.user.id)
     const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
 
-    const user = await userModel.findByPk(req.session.user.id);
+    const user = await userModel.findByPk(contaSelecionada);
 
-    const postsUser = await postModel.findAll({ where: { user_id: req.session.user.id } });
+    const postsUser = await postModel.findAll({ where: { user_id: contaSelecionada} });
     const seguindoOrnot = await followerModel.findOne(
         { where: { user_id: contaSelecionada, seguidor_id: idUser } }
     )
