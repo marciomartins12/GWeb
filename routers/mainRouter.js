@@ -200,7 +200,7 @@ Router.get("/perfilUsuario/:id", userAuthenticate, async (req, res) => {
     res.render("perfilUsuario", { totalPost: countPosts, totalSeguindo: countFollowing, totalSeguidores: countFollower, userName: user.nome, bio: user.bio, posts: postsFormatados, imagem, userid: user.iduser, verifyfollower });
 })
 
-Router.post("/unfollow:id", userAuthenticate, async (req, res) => {
+Router.post("/unfollow/:id", userAuthenticate, async (req, res) => {
     const unfollow = req.params.id;
     const user = req.session.user.id;
 
@@ -210,7 +210,7 @@ Router.post("/unfollow:id", userAuthenticate, async (req, res) => {
 
 });
 
-Router.post("/follow:id", userAuthenticate, async (req, res) => {
+Router.post("/follow/:id", userAuthenticate, async (req, res) => {
     const follow = req.params.id;
     const user = req.session.user.id;
     const dataAtual = new Date().toISOString().slice(0, 10)

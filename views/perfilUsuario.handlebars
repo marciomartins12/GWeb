@@ -106,13 +106,38 @@
 
     {{verifyfollower}}.addEventListener("click", () => {
         if (`{{verifyfollower}}` == "seguindo") {
-          if( confirm("Realmente deseja parar de seguir?")){
-                window.location.href = `/unfollow/{{userid}}`
-          }
-        } else if (`{{verifyfollower}}`== "seguir") {
-            if( confirm("Realmente deseja seguir este usuário?")){
-                window.location.href = `/follow/{{userid}}`
-          }
+            if (confirm("Realmente deseja parar de seguir?")) {
+                fetch(`/unfollow/{{userid}}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }).then(response => {
+                    if (response.ok) {
+                        alert("Você parou de seguir o usuário.");
+                        window.location.reload();
+                    } else {
+                        alert("Erro ao parar de seguir o usuário.");
+                    }
+                }).catch(err => console.error(err));
+            }
+        } else if (`{{verifyfollower}}` == "seguir") {
+            if (confirm("Realmente deseja seguir este usuário?")) {
+                      fetch( `/follow/{{userid}}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }).then(response => {
+                    if (response.ok) {
+                        alert("Você começou seguir este usuário.");
+                        window.location.reload();
+                    } else {
+                        alert("Erro ao seguir o usuário.");
+                    }
+                }).catch(err => console.error(err));
+               
+            }
         }
     })
 </script>
