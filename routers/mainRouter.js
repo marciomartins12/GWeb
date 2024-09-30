@@ -127,8 +127,8 @@ Router.get("/post/:id", userAuthenticate, async (req, res) => {
 
     if (post) {
         const user = await userModel.findByPk(post.user_id);
-        const likeOrNot = await likeModel.findOne({where : { post_id : req.params.id, user_id : req.session.user.id}});
-       const lkn = likeOrNot ?`<svg aria-label="Descurtir" class="x1lliihq x1n2onr6 xxk16z8" fill="currentColor" height="24" role="img" viewBox="0 0 48 48" width="24"><title>Descurtir</title><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>` : `<svg aria-label="Curtir" class="x1lliihq x1n2onr6 xyb1xck" fill="currentColor" height="24"
+        const likeOrNot = await likeModel.findOne({ where: { post_id: req.params.id, user_id: req.session.user.id } });
+        const lkn = likeOrNot ? `<svg class="ponto descurtir"  aria-label="Descurtir" class="x1lliihq x1n2onr6 xxk16z8" fill="currentColor" height="24" role="img" viewBox="0 0 48 48" width="24"><title>Descurtir</title><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>` : `<svg class="ponto curtir" aria-label="Curtir" class="x1lliihq x1n2onr6 xyb1xck" fill="currentColor" height="24"
        role="img" viewBox="0 0 24 24" width="24">
        <title>Curtir</title>
        <path
@@ -140,7 +140,7 @@ Router.get("/post/:id", userAuthenticate, async (req, res) => {
             ...post.dataValues,
             imagem_post: `data:image/png;base64,${post.imagem_post.toString("base64")}`,
             likes: contadorCurtidas,
-            lkn : lkn,
+            lkn: lkn,
             user_post: user.nome,
             idusuario: user.iduser,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
@@ -229,5 +229,11 @@ Router.post("/follow/:id", userAuthenticate, async (req, res) => {
     }).then(() => res.redirect(`/perfilUsuario/${follow}`)).catch((err) => console.log(err))
 
 });
+
+Router.post("/deslike/:id", userAuthenticate, (req, res)=>{
+    const idPost = req.params.id;
+    const user = req.session.user.id;
+    
+})
 
 module.exports = Router
