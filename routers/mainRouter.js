@@ -22,7 +22,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
     const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
 
     const postsFormatados = await Promise.all(posts.map(async (post) => {
-        let totalComentarios = await commentModel.count({ where : {post_id  : post.idpost}})
+        let totalComentarios = await commentModel.count({ where: { post_id: post.idpost } })
         let contadorCurtidas = await likeModel.count({
             where: { post_id: post.idpost }
         })
@@ -43,7 +43,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
             lkn: lkn,
             user_post: user.nome,
             userId: user.iduser,
-            totalComentarios : totalComentarios == 0? "" : totalComentarios,
+            totalComentarios: totalComentarios == 0 ? "" : totalComentarios,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         }
     }));
@@ -266,21 +266,38 @@ Router.get("/verComentarios/:id", userAuthenticate, async (req, res) => {
     const comentarios = await commentModel.findAll({ where: { post_id: idPost } });
     console.log(comentarios)
     if (comentarios[0]) {
-       
+
         const comentariosFormatados = await Promise.all(comentarios.map(async (comentario) => {
             let usuarioComentou = await userModel.findByPk(comentario.user_id);
 
             return {
                 ...comentario.dataValues,
-                imagemUser:  usuarioComentou.foto_perfil ? `data:imagem/png;base64,${usuarioComentou.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png",
+                imagemUser: usuarioComentou.foto_perfil ? `data:imagem/png;base64,${usuarioComentou.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png",
                 userName: usuarioComentou.nome
             }
-        })) ;
-       
-        res.render("viewComment", { comentariosFormatados, mensagem : "", idPost});
-    }else{
-     
-        res.render("viewComment", {mensagem : "<p class='mesangemF'>Nenhuma mensagem foi encontrada.</p>", idPost })
+        }));
+
+        res.render("viewComment", { comentariosFormatados, mensagem: "", idPost });
+    } else {
+
+        res.render("viewComment", { mensagem: "<p class='mesangemF'>Nenhuma mensagem foi encontrada.</p>", idPost })
+    }
+})
+Router.post("/enviarComment/:id", userAuthenticate, async (req, res) => {
+    const idPost = req.params.id;
+    const idUser = req.session.user.id;
+    const { conteudo } = req.body;
+    const dataAtual = new Date().toISOString().slice(0, 10)
+    try {
+        await commentModel.create({
+            post_id: idPost,
+            user_id: idUser,
+            conteudo: conteudo,
+            data_comment: dataAtual
+        }).then(() => res.redirect(`/verComentarios/${idPost}`)).catch((er) => console.log(er));
+
+    } catch (error) {
+        console.log(error)
     }
 })
 
