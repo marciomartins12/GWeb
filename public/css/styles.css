@@ -584,6 +584,13 @@ body {
     position: relative;
 }
 
+.comentarios {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
 .viewPost nav,
 .createAccount nav,
 .sectionNewPost nav,
@@ -605,24 +612,43 @@ body {
     color: white;
     transform: rotate(270deg);
 }
-.commentariosList ul{
+
+.commentariosList ul {
     display: flex;
     flex-direction: column;
     color: white;
     margin-top: 1em;
 }
-.commentariosList ul li{
+
+.commentariosList ul li {
     display: flex;
     align-items: center;
     gap: 1em;
 }
+
 .commentariosList ul li img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
-.commentariosList ul li div{
+
+.commentariosList ul li div {
     display: flex;
     flex-direction: column;
+}
+.formMensagem{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+.formMensagem input{
+    border: none;
+    background-color: rgb(59, 59, 59);
+    padding: 1em;
+    border-radius: 1em;
+}
+.formMensagem input::placeholder{
+    color: white;
 }
