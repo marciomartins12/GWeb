@@ -277,10 +277,10 @@ Router.get("/verComentarios/:id", userAuthenticate, async (req, res) => {
             }
         })) ;
        
-        res.render("viewComment", { comentariosFormatados, mensagem : ""});
+        res.render("viewComment", { comentariosFormatados, mensagem : "", idPost});
     }else{
      
-        res.render("viewComment", {mensagem : "<p class='mesangemF'>Nenhuma mensagem foi encontrada.</p>" })
+        res.render("viewComment", {mensagem : "<p class='mesangemF'>Nenhuma mensagem foi encontrada.</p>", idPost })
     }
 })
 

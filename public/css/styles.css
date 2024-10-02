@@ -652,3 +652,9 @@ body {
 .formMensagem input::placeholder{
     color: white;
 }
+.formMensagem button{
+    border: none;
+    background-color: #272727;
+    color: rgb(165, 165, 244);
+    border-radius: 1em;
+}
