@@ -12,17 +12,22 @@
         <h2>Comentários</h2>
     </nav>
     <div class="commentariosList">
+        {{{mensagem}}}
         <ul>
+            {{#each comentariosFormatados}}
             <li>
-                <img src="" alt="" >
+                <img src={{imagemUser}} alt="imagem usuário" >
                 <div>
-                    <h3>marciomartins12</h3>
-                    <p>conteudo...</p>
+                    <h3>{{userName}}</h3>
+                    <p>{{conteudo}}</p>
                 </div>
             </li>
+            {{/each}}
         </ul>
     </div>
 </section>
+
+
 <script>
     const btn = document.querySelector("#btnVoltar");
     btn.addEventListener("click", () => {

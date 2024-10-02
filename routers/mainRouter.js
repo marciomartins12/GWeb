@@ -22,6 +22,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
     const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
 
     const postsFormatados = await Promise.all(posts.map(async (post) => {
+        let totalComentarios = await commentModel.count({ where : {post_id  : post.idpost}})
         let contadorCurtidas = await likeModel.count({
             where: { post_id: post.idpost }
         })
@@ -42,6 +43,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
             lkn: lkn,
             user_post: user.nome,
             userId: user.iduser,
+            totalComentarios : totalComentarios == 0? "" : totalComentarios,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         }
     }));
@@ -262,17 +264,23 @@ Router.post("/like/:id", userAuthenticate, async (req, res) => {
 Router.get("/verComentarios/:id", userAuthenticate, async (req, res) => {
     const idPost = req.params.id;
     const comentarios = await commentModel.findAll({ where: { post_id: idPost } });
-    if (comentarios) {
-        const comentariosFormatados = comentarios.map(async (comentario) => {
-            let usuarioComentou = await userAuthenticate.findByPk(comentario.user_id)
-            let imagemUsuario = usuarioComentou.foto_perfil ? `data:imagem/png;base64,${usuarioComentou.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+    console.log(comentarios)
+    if (comentarios[0]) {
+       
+        const comentariosFormatados = await Promise.all(comentarios.map(async (comentario) => {
+            let usuarioComentou = await userModel.findByPk(comentario.user_id);
+
             return {
                 ...comentario.dataValues,
-                imagemUser: imagemUsuario,
+                imagemUser:  usuarioComentou.foto_perfil ? `data:imagem/png;base64,${usuarioComentou.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png",
                 userName: usuarioComentou.nome
             }
-        });
-        res.render("viewComment", { comentariosFormatados});
+        })) ;
+       
+        res.render("viewComment", { comentariosFormatados, mensagem : ""});
+    }else{
+     
+        res.render("viewComment", {mensagem : "<p class='mesangemF'>Nenhuma mensagem foi encontrada.</p>" })
     }
 })
 
