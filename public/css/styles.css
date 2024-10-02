@@ -232,10 +232,11 @@ body {
     height: auto;
 
 }
-.publics ul li div a  {
 
-color: white;
-text-decoration: none;
+.publics ul li div a {
+
+    color: white;
+    text-decoration: none;
 }
 
 .publics ul li div a h2 {
@@ -255,15 +256,16 @@ text-decoration: none;
     height: 400px;
     object-fit: cover;
 }
+
 @media screen and (min-width : 320px) {
-    
+
     .imagemPostada {
         margin-top: 1em;
         width: 430px;
         height: 430px;
         object-fit: cover;
     }
-    
+
 }
 
 #previewImagem {
@@ -313,10 +315,10 @@ text-decoration: none;
 }
 
 .footerNavHome {
-  
+
     border-top: 1px solid rgb(66, 64, 64);
     position: fixed;
-   
+
     bottom: 0;
     left: 0;
     width: 100%;
@@ -506,6 +508,7 @@ text-decoration: none;
     border-radius: .5em;
     background-color: #363636;
 }
+
 .perfilInfos div span p {
     font-size: .8em;
     text-decoration: none;
@@ -514,8 +517,9 @@ text-decoration: none;
     border-radius: .5em;
     background-color: #363636;
 }
-.seguindo{
-    color:#2fff59 ;
+
+.seguindo {
+    color: #2fff59;
 }
 
 .rodapeCabecalho {
@@ -567,19 +571,23 @@ text-decoration: none;
     height: 125px;
     object-fit: cover;
 }
-@media screen and (min-width : 430px){
+
+@media screen and (min-width : 430px) {
     .postsPerfil li a img {
         width: 134px;
         height: 134px;
         object-fit: cover;
     }
 }
-.viewPost { 
+
+.viewPost {
     position: relative;
 }
+
 .viewPost nav,
 .createAccount nav,
-.sectionNewPost nav {
+.sectionNewPost nav,
+.comentarios nav {
     display: flex;
     align-items: center;
     margin-left: 1em;
@@ -588,11 +596,33 @@ text-decoration: none;
     color: white;
 }
 
- 
+
 
 .viewPost nav p,
 .createAccount nav p,
-.sectionNewPost nav p{
+.sectionNewPost nav p,
+.comentarios nav p {
     color: white;
     transform: rotate(270deg);
+}
+.commentariosList ul{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-top: 1em;
+}
+.commentariosList ul li{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.commentariosList ul li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.commentariosList ul li div{
+    display: flex;
+    flex-direction: column;
 }

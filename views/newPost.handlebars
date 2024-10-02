@@ -1,13 +1,15 @@
 <section class="sectionNewPost">
     <nav>
-        <a href="/">    <svg aria-label="Voltar" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img"
+        <p id="btnVoltar">
+            <svg aria-label="Voltar" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img"
                 viewBox="0 0 24 24" width="24">
                 <title>Voltar</title>
                 <path
                     d="M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z">
                 </path>
-            </svg></a>
-        <h2>Nova publicação</h2>
+            </svg>
+        </p>
+        <h2>Publicação</h2>
     </nav>
 
     <form class="formNewPost" action="enviandoNewPost" method="post" enctype="multipart/form-data">
@@ -32,6 +34,10 @@
 </section>
 
 <script>
+  const btn = document.querySelector("#btnVoltar");
+    btn.addEventListener("click", () => {
+        window.history.back()
+    })
 
     const inputImagem = document.getElementById('imagem');
     const previewImagem = document.getElementById('previewImagem');
