@@ -656,10 +656,15 @@ body {
     background-color: rgb(59, 59, 59);
     padding: 1em;
     border-radius: 1em;
+    color: white;
 }
 .formMensagem input::placeholder{
     color: white;
 }
+.formMensagem input:focus{
+    outline: none;
+}
+
 .formMensagem button{
     border: none;
     background-color: #272727;
