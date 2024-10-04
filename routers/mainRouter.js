@@ -334,7 +334,7 @@ Router.get("/explorerUser", userAuthenticate, async (req, res) => {
         }
     });
     if (usuariosEncontrados) {
-        console.log(usuariosEncontrados)
+       
         const usuarioFormatados = usuariosEncontrados.map((user) => {
 
             return {
