@@ -305,15 +305,26 @@ Router.get("/explorar", userAuthenticate, async (req, res) => {
     const post = await postModel.findAll({
         limit: 10,
     });
-const publicacoes =  post.map((post)=>{
+    const publicacoes = post.map((post) => {
 
-    return {
-        ...post.dataValues,
-        imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
+        return {
+            ...post.dataValues,
+            imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
+        }
+    })
+
+
+    res.render("explorar", { publicacoes })
+});
+
+
+Router.get("/explorerUser", userAuthenticate, async (req, res) => {
+
+    const { nome } = req.body;
+    const usuariosEncontrados = await userModel.findAll({ where: { nome: nome } });
+    if (usuariosEncontrados) {
+        return res.render("viewExplorer", { usuariosEncontrados, mensagem: "" })
     }
-})
-
-
-    res.render("explorar", { publicacoes})
+    res.render("viewExplorer", { mensagem: "<p class='mesangemF'>nenhum conta com esse nome foi encontrada.</p>" })
 })
 module.exports = Router
