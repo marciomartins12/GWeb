@@ -305,7 +305,7 @@ Router.get("/explorar", userAuthenticate, async (req, res) => {
     const post = await postModel.findAll({
         limit: 10,
     });
-const publicacoes = await post.map((post)=>{
+const publicacoes =  post.map((post)=>{
 
     return {
         ...post.dataValues,

@@ -702,13 +702,13 @@ body {
     border-radius: 0 1em 1em 0;
 }
 
-.explorar ul {
+.explorar .listasAccountsSearch {
     display: flex;
     flex-wrap: wrap;
     gap: 3px;
 }
 
-.explorar ul li img {
+.explorar .listasAccountsSearch li img {
     width: 130px;
     height: 130px;
     object-fit: cover;

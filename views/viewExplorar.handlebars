@@ -1,0 +1,14 @@
+<section class="explorar"></section>
+<form action="explorerUser" method="get">
+    <input type="text" name="nome" placeholder="Pesquisar">
+    <button type="submit"><i class='bx bx-search-alt-2' style='color:#ffffff'  ></i></button>
+</form>
+
+<ul class="userLists">
+    {{#each publicacoes}}
+    <li>
+        <img src={{imagem_post}} alt="imagem post">
+    </li>
+    {{/each}}
+</ul>
+</section>
