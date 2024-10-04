@@ -154,7 +154,7 @@ Router.get("/post/:id", userAuthenticate, async (req, res) => {
             likes: contadorCurtidas,
             lkn: lkn,
             user_post: user.nome,
-            idPost : req.params.id,
+            idPost: req.params.id,
             idusuario: user.iduser,
             img_user: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
         };
@@ -281,7 +281,7 @@ Router.get("/verComentarios/:id", userAuthenticate, async (req, res) => {
         res.render("viewComment", { comentariosFormatados, mensagem: "", idPost });
     } else {
 
-        res.render("viewComment", { mensagem: "<p class='mesangemF'>Nenhuma mensagem foi encontrada.</p>", idPost })
+        res.render("viewComment", { mensagem: "<p class='mesangemF'>nenhum comentário foi encontrada.</p>", idPost })
     }
 })
 Router.post("/enviarComment/:id", userAuthenticate, async (req, res) => {
@@ -301,5 +301,19 @@ Router.post("/enviarComment/:id", userAuthenticate, async (req, res) => {
         console.log(error)
     }
 })
+Router.get("/explorar", userAuthenticate, async (req, res) => {
+    const post = await postModel.findAll({
+        limit: 10,
+    });
+const publicacoes = await post.map((post)=>{
 
+    return {
+        ...post.dataValues,
+        imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
+    }
+})
+
+
+    res.render("explorar", { publicacoes})
+})
 module.exports = Router

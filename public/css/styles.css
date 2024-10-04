@@ -633,11 +633,13 @@ body {
     border-radius: 50%;
     object-fit: cover;
 }
+
 .commentariosList ul li div h3 {
-   font-size: .7em;
+    font-size: .7em;
 }
+
 .commentariosList ul li div p {
-   font-size: .8em;
+    font-size: .8em;
 }
 
 .commentariosList ul li div {
@@ -645,29 +647,69 @@ body {
     gap: .1em;
     flex-direction: column;
 }
-.formMensagem{
+
+.formMensagem {
     display: flex;
     gap: 1em;
     justify-content: center;
     margin-bottom: 1em;
 }
-.formMensagem input{
+
+.formMensagem input {
     border: none;
     background-color: rgb(59, 59, 59);
     padding: 1em;
     border-radius: 1em;
     color: white;
 }
-.formMensagem input::placeholder{
+
+.formMensagem input::placeholder {
     color: white;
 }
-.formMensagem input:focus{
+
+.formMensagem input:focus {
     outline: none;
 }
 
-.formMensagem button{
+.formMensagem button {
     border: none;
     background-color: #272727;
     color: rgb(165, 165, 244);
     border-radius: 1em;
+}
+
+.explorar form {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.explorar form input {
+    background-color: #272727;
+    padding: 1em;
+    border: none;
+    width: 100%;
+    border-radius: 1em 0 0 1em ;
+}
+
+.explorar form button {
+    background-color: #272727;
+    padding: 1em;
+    border: none;
+    border-radius: 0 1em 1em 0;
+}
+
+.explorar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+
+.explorar ul li img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
 }
