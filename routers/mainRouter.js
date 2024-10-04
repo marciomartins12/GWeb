@@ -7,6 +7,7 @@ const postModel = require("../models/post");
 const likeModel = require("../models/like");
 const followerModel = require("../models/followers");
 const commentModel = require("../models/comment");
+const { Op } = require('sequelize');
 const userAuthenticate = require("../middlewares/userAuthenticate");
 
 const uploadMultiple = upload.fields([
@@ -302,6 +303,8 @@ Router.post("/enviarComment/:id", userAuthenticate, async (req, res) => {
     }
 })
 Router.get("/explorar", userAuthenticate, async (req, res) => {
+      const user = await userModel.findByPk(req.session.user.id);
+    const imagem = user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
     const post = await postModel.findAll({
         limit: 10,
     });
@@ -314,17 +317,34 @@ Router.get("/explorar", userAuthenticate, async (req, res) => {
     })
 
 
-    res.render("explorar", { publicacoes })
+    res.render("explorar", { publicacoes, imagem})
 });
 
 
 Router.get("/explorerUser", userAuthenticate, async (req, res) => {
 
-    const { nome } = req.body;
-    const usuariosEncontrados = await userModel.findAll({ where: { nome: nome } });
+    const nome = req.query.nomeUser;
+    const user = await userModel.findByPk(req.session.user.id);
+    const imagem = user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+    const usuariosEncontrados = await userModel.findAll({
+        where: {
+            nome: {
+                [Op.like]: `%${nome}%`
+            }
+        }
+    });
     if (usuariosEncontrados) {
-        return res.render("viewExplorer", { usuariosEncontrados, mensagem: "" })
+        console.log(usuariosEncontrados)
+        const usuarioFormatados = usuariosEncontrados.map((user) => {
+
+            return {
+                ...user.dataValues,
+                foto_perfil: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+            }
+        })
+        return res.render("viewExplorar", { usuarioFormatados: usuarioFormatados, mensagem: "", imagem })
     }
-    res.render("viewExplorer", { mensagem: "<p class='mesangemF'>nenhum conta com esse nome foi encontrada.</p>" })
-})
+    res.render("viewExplorar", { mensagem: "<p class='mesangemF'>nenhum conta com esse nome foi encontrada.</p>", imagem })
+});
+
 module.exports = Router

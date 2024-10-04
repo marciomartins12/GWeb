@@ -691,6 +691,8 @@ body {
     background-color: #272727;
     padding: 1em;
     border: none;
+    outline: none;
+    color: white;
     width: 100%;
     border-radius: 1em 0 0 1em ;
 }
@@ -712,4 +714,22 @@ body {
     width: 130px;
     height: 130px;
     object-fit: cover;
+}
+.userLists{
+    display: flex;
+    flex-direction: column;
+}
+.userLists li a{
+    margin-left: 1em;
+    text-decoration: none;
+    display: flex;
+    gap: 1em;
+    color: white;
+    align-items: center;
+}
+.userLists li img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover; 
+    border-radius: 1em;
 }
