@@ -18,7 +18,7 @@ const uploadMultiple = upload.fields([
 
 Router.get("/", userAuthenticate, async (req, res) => {
 
-    const posts = await postModel.findAll();
+    const posts = await postModel.findAll({order : [["idpost", "DESC"]]});
     const usuarioLogado = await userModel.findByPk(req.session.user.id)
     const imagem = usuarioLogado.foto_perfil ? `data:imagem/png;base64,${usuarioLogado.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
 
