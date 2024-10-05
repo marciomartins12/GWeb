@@ -1,0 +1,79 @@
+<section class="editProfile">
+    <nav>
+        <p id="btnVoltar">
+            <svg aria-label="Voltar" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img"
+                viewBox="0 0 24 24" width="24">
+                <title>Voltar</title>
+                <path
+                    d="M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z">
+                </path>
+            </svg>
+        </p>
+        <h2>Editar Perfil</h2>
+    </nav>
+
+
+
+
+    <form action="/updateImagem" method="post" enctype="multipart/form-data">
+        <div class="imagens">
+
+            <div id="currentProfileImage">
+                {{#if formattedUser.foto_perfil}}
+                <img src={{formattedUser.foto_perfil}} alt="Imagem de Perfil" style="width: 150px; height: 150px;">
+                {{else}}
+                <p>Sem imagem de perfil</p>
+                {{/if}}
+            </div>
+            <div id="newProfileImage" style="display:none;">
+                <img id="previewImage" alt="Nova Imagem de Perfil" style="width: 150px; height: 150px;">
+            </div>
+        </div>
+        <div class="imagens">
+            <input class="inputImg" type="file" required name="imagem" id="imagem">
+        </div>
+        <div class="imagens">
+
+            <button class="btnFt" type="submit">Atualizar foto</button>
+        </div>
+    </form>
+
+
+    <form class="listinfos" action="/updateInfos" method="post">
+        <div>
+
+            <input type="text" name="nome" value={{formattedUser.nome}} placeholder="nome do usuário">
+            <input type="text" name="bio" placeholder="bio" value={{formattedUser.bio}}>
+            <input type="text" name="email" value={{formattedUser.email}} placeholder="email">
+        </div>
+        <div class="imagens">
+            <button class="btnFt" type="submit">Atualizar Informações</button>
+        </div>
+    </form>
+</section>
+
+<script>
+    const btn = document.querySelector("#btnVoltar");
+    btn.addEventListener("click", () => {
+        window.history.back()
+    })
+    document.getElementById("imagem").addEventListener("change", function (event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                const newImageDiv = document.getElementById("newProfileImage");
+                const previewImage = document.getElementById("previewImage");
+
+                previewImage.src = e.target.result;
+                newImageDiv.style.display = "block";
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>

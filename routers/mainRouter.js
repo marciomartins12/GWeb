@@ -7,7 +7,7 @@ const postModel = require("../models/post");
 const likeModel = require("../models/like");
 const followerModel = require("../models/followers");
 const commentModel = require("../models/comment");
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 const userAuthenticate = require("../middlewares/userAuthenticate");
 
 const uploadMultiple = upload.fields([
@@ -29,7 +29,7 @@ Router.get("/", userAuthenticate, async (req, res) => {
         })
         let user = await userModel.findByPk(post.user_id)
         const likeOrNot = await likeModel.findOne({ where: { post_id: post.idpost, user_id: req.session.user.id } });
-        
+
         return {
             ...post.dataValues,
             imagem_post: post.imagem_post ? `data:image/png;base64,${post.imagem_post.toString('base64')}` : null,
@@ -51,18 +51,20 @@ Router.get("/", userAuthenticate, async (req, res) => {
 });
 Router.post("/likeOrDeslike/:id", userAuthenticate, async (req, res) => {
     const { likeOrNot } = req.body;
-    console.log(likeOrNot)
+
     if (likeOrNot == "curtir") {
         await likeModel.create({
             post_id: req.params.id,
             user_id: req.session.user.id
         })
         return res.json({ lknort: true });
-    }else {
-        await likeModel.destroy({where : {
-            post_id: req.params.id,
-            user_id: req.session.user.id
-        }})
+    } else {
+        await likeModel.destroy({
+            where: {
+                post_id: req.params.id,
+                user_id: req.session.user.id
+            }
+        })
         return res.json({ lknort: false });
     }
 });
@@ -332,5 +334,63 @@ Router.get("/explorerUser", userAuthenticate, async (req, res) => {
     }
     res.render("viewExplorar", { mensagem: "<p class='mesangemF'>nenhum conta com esse nome foi encontrada.</p>", imagem })
 });
+
+
+Router.get("/editProfile", userAuthenticate, async (req, res) => {
+    const idUser = req.session.user.id;
+    try {
+        const user = await userModel.findByPk(idUser);
+        if (user) {
+            const formattedUser = {
+                ...user.dataValues,
+                foto_perfil: user.foto_perfil ? `data:imagem/png;base64,${user.foto_perfil.toString("base64")}` : "/img/imagemPadrao.png"
+
+            }
+            res.render("editProfile", { formattedUser });
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+Router.post("/updateInfos", userAuthenticate, async (req, res) => {
+    const idUser = req.session.user.id;
+    const { nome, bio, email } = req.body;
+
+    try {
+        await userModel.update(
+            {
+                nome: nome,
+                bio: bio,
+                email: email
+            },
+            {
+                where: {
+                    iduser: idUser
+                }
+            }
+        ).then((e) => {
+            res.redirect("perfil");
+        });
+
+    } catch (error) {
+        console.error("Erro ao atualizar informações:", error);
+        res.status(500).send("Erro ao atualizar as informações.");
+    }
+});
+Router.post("/updateImagem", uploadMultiple ,userAuthenticate, async (req, res) => {
+    const idUser = req.session.user.id;
+    const imagem = req.files['imagem'] ? req.files['imagem'][0].buffer : null;
+    await userModel.update({
+        foto_perfil: imagem
+    }, {
+        where: {
+            iduser: idUser
+        }
+    }).then(()=>{
+        res.redirect("perfil")
+    })
+})
 
 module.exports = Router
