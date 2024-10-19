@@ -389,8 +389,8 @@ Router.post("/updateImagem", uploadMultiple ,userAuthenticate, async (req, res) 
             iduser: idUser
         }
     }).then(()=>{
-        res.redirect("perfil")
+        res.redirect("perfil");
     })
 })
 
-module.exports = Router
+module.exports = Router;
