@@ -6,6 +6,7 @@ const userModel = require("../models/user");
 const postModel = require("../models/post");
 const likeModel = require("../models/like");
 const followerModel = require("../models/followers");
+const notificacoesModel = require("../models/notificacoes");
 const commentModel = require("../models/comment");
 const { Op, where } = require('sequelize');
 const userAuthenticate = require("../middlewares/userAuthenticate");
@@ -57,9 +58,20 @@ Router.post("/likeOrDeslike/:id", userAuthenticate, async (req, res) => {
             post_id: req.params.id,
             user_id: req.session.user.id
         })
+        await notificacoesModel.create({
+            post_id: req.params.id,
+            user_id: req.session.user.id,
+            content: "Curtiu sua publicação"
+        })
         return res.json({ lknort: true });
     } else {
         await likeModel.destroy({
+            where: {
+                post_id: req.params.id,
+                user_id: req.session.user.id
+            }
+        })
+        await notificacoesModel.destroy({
             where: {
                 post_id: req.params.id,
                 user_id: req.session.user.id
@@ -235,7 +247,11 @@ Router.post("/unfollow/:id", userAuthenticate, async (req, res) => {
     await followerModel.destroy({ where: { user_id: unfollow, seguidor_id: user } }).then(() => {
         res.redirect(`/perfilUsuario/${unfollow}`)
     }).catch((err) => console.log(err))
-
+    await notificacoesModel.destroy({
+        where: {
+   
+        }
+    })
 });
 
 Router.post("/follow/:id", userAuthenticate, async (req, res) => {
@@ -379,7 +395,7 @@ Router.post("/updateInfos", userAuthenticate, async (req, res) => {
         res.status(500).send("Erro ao atualizar as informações.");
     }
 });
-Router.post("/updateImagem", uploadMultiple ,userAuthenticate, async (req, res) => {
+Router.post("/updateImagem", uploadMultiple, userAuthenticate, async (req, res) => {
     const idUser = req.session.user.id;
     const imagem = req.files['imagem'] ? req.files['imagem'][0].buffer : null;
     await userModel.update({
@@ -388,9 +404,15 @@ Router.post("/updateImagem", uploadMultiple ,userAuthenticate, async (req, res) 
         where: {
             iduser: idUser
         }
-    }).then(()=>{
+    }).then(() => {
         res.redirect("perfil");
     })
 })
 
+
+Router.get("/notificacao", userAuthenticate, async (req, res) => {
+    const notificacoes = await notificacoesModel.findAll({ where: { user_id: req.session.user.id } })
+    console.log(notificacoes)
+    res.send("notificacoes");
+})
 module.exports = Router;

@@ -25,4 +25,4 @@ const notificacoes = sequelize.define("notificacoes", {
         timestamps: false
     })
 
-    module.exports = comment
+    module.exports = notificacoes
